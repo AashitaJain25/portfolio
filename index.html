@@ -1,761 +1,1474 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aashita Jain • Portfolio</title>
-  <meta name="description" content="Aashita Jain — Economist | Data Analyst"/>
-  <meta name="theme-color" content="#0a0a0a"/>
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Aashita Jain • Portfolio"/>
-  <meta property="og:description" content="Economist | Data Analyst"/>
-  <meta property="og:type" content="website"/>
-
-  <!-- Tailwind + Icons -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-
-  <!-- Favicon (SVG data URI) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2364ffda'/%3E%3Cstop offset='1' stop-color='%234fc3f7'/%3E%3C/linearGradient%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='url(%23g)' opacity='0.18'/%3E%3Ctext x='50%25' y='58%25' font-size='34' text-anchor='middle' fill='%2364ffda' font-family='Poppins, Arial, sans-serif'%3EAJ%3C/text%3E%3C/svg%3E"/>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0a0a0a;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    /* Navbar */
-    .navbar {
-      position: fixed; top: 0; width: 100%;
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      transition: all .3s ease;
-    }
-    .navbar.scrolled {
-      background: rgba(10,10,10,0.98);
-      box-shadow: 0 2px 20px rgba(0,0,0,.3);
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-      position: relative; display: flex; align-items: center; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-    }
-
-    /* Particles */
-    .particles { position: absolute; inset: 0; overflow: hidden; }
-    .particle {
-      position: absolute; width: 2px; height: 2px; background: #64ffda; border-radius: 50%;
-      animation: float 6s ease-in-out infinite; opacity: .6;
-    }
-    .particle:nth-child(1){ top:20%; left:20%; animation-delay:0s; }
-    .particle:nth-child(2){ top:60%; left:80%; animation-delay:2s; }
-    .particle:nth-child(3){ top:80%; left:40%; animation-delay:4s; }
-    .particle:nth-child(4){ top:40%; left:60%; animation-delay:1s; }
-    .particle:nth-child(5){ top:70%; left:20%; animation-delay:3s; }
-    @keyframes float { 0%,100%{transform:translateY(0) scale(1);opacity:.6;} 50%{transform:translateY(-20px) scale(1.1);opacity:1;} }
-
-    /* Profile */
-    .profile-container { position: relative; width: 300px; height: 300px; margin: 0 auto; }
-    .profile-image {
-      width: 100%; height: 100%; border-radius: 50%;
-      background: linear-gradient(135deg, #64ffda, #4fc3f7);
-      display:flex; align-items:center; justify-content:center;
-      font-size: 4rem; font-weight: 800; color:#0a0a0a; position: relative; overflow: hidden;
-    }
-    .profile-image::before {
-      content:''; position:absolute; inset:-2px; border-radius:50%;
-      background: linear-gradient(45deg, #64ffda, #4fc3f7, #64ffda);
-      z-index:-1; animation: rotate 3s linear infinite;
-    }
-    .profile-image img {
-      width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-      display: block;
-    }
-    @keyframes rotate { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-
-    /* Typing */
-    .typing-text {
-      border-right: 2px solid #64ffda;
-      white-space: nowrap; overflow: hidden;
-      animation: blink 1s infinite;
-    }
-    @keyframes blink { 0%,50%{border-color:#64ffda;} 51%,100%{border-color:transparent;} }
-
-    /* Sections */
-    .section { padding: 100px 0; position: relative; }
-    .section-title {
-      font-size: 3rem; font-weight: 700; text-align:center; margin-bottom: 3rem; position: relative;
-    }
-    .section-title::after {
-      content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
-      width:60px; height:3px; background: linear-gradient(90deg, #64ffda, #4fc3f7); border-radius:2px;
-    }
-
-    /* Card */
-    .card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 15px; padding: 2rem; position: relative; overflow: hidden;
-      transition: all .3s ease;
-    }
-    .card::before {
-      content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
-      background: linear-gradient(90deg, transparent, rgba(100,255,218,0.1), transparent);
-      transition: left .5s ease;
-    }
-    .card:hover::before{ left:100%; }
-    .card:hover{ transform: translateY(-10px); border-color: rgba(100,255,218,0.3); box-shadow: 0 20px 40px rgba(100,255,218,0.1); }
-
-    /* Skills */
-    .skill-item {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px; padding: 1.5rem; text-align:center; transition: all .3s ease;
-    }
-    .skill-item:hover { background: rgba(100,255,218,0.1); border-color: rgba(100,255,218,0.3); transform: translateY(-5px); }
-    .skill-icon { font-size: 2.5rem; margin-bottom: .75rem; color: #64ffda; }
-
-    /* Progress */
-    .progress-bar { width:100%; height:6px; background: rgba(255,255,255,0.1); border-radius:3px; overflow:hidden; margin-top:.5rem; }
-    .progress-fill { height:100%; background: linear-gradient(90deg, #64ffda, #4fc3f7); border-radius:3px; width:0; }
-
-    /* Animations */
-    .fade-in { opacity:0; transform: translateY(30px); transition: all .6s ease; }
-    .fade-in.visible { opacity:1; transform: translateY(0); }
-
-    /* Mobile Menu */
-    .mobile-menu {
-      display:none; position:fixed; inset:0; height:100vh; background: rgba(10,10,10,0.98);
-      backdrop-filter: blur(10px); z-index: 999; flex-direction:column; justify-content:center; align-items:center;
-    }
-    .mobile-menu.active { display:flex; }
-
-    /* Footer helper */
-    .helper-wrap { display:flex; flex-direction:column; gap:.75rem; align-items:center; justify-content:center; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aashita Jain - MSc Economics Student Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        }
+        
+        /* Animated Background Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #64ffda;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        
+        .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(3) { top: 80%; left: 40%; animation-delay: 4s; }
+        .particle:nth-child(4) { top: 40%; left: 60%; animation-delay: 1s; }
+        .particle:nth-child(5) { top: 70%; left: 20%; animation-delay: 3s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+        }
+        
+        /* Profile Image */
+        .profile-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #64ffda, #4fc3f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #64ffda, #4fc3f7, #64ffda);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+        }
+        
+        .photo-upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            color: white;
+        }
+        
+        .profile-image:hover .photo-upload-overlay {
+            opacity: 1;
+        }
+        
+        .profile-image {
+            cursor: pointer;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Typing Animation */
+        .typing-text {
+            border-right: 2px solid #64ffda;
+            animation: typing 4s steps(30) infinite, blink 1s infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes typing {
+            0%, 50% { width: 0; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #64ffda; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #64ffda, #4fc3f7);
+            border-radius: 2px;
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .card:hover::before {
+            left: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
+        }
+        
+        /* Skills */
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: rgba(100, 255, 218, 0.1);
+            border-color: rgba(100, 255, 218, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #64ffda;
+        }
+        
+        /* Progress Bars */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #4fc3f7);
+            border-radius: 3px;
+            transition: width 2s ease;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #64ffda, #4fc3f7);
+            color: #0a0a0a;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+        }
+        
+        .btn-outline {
+            border: 2px solid #64ffda;
+            color: #64ffda;
+            padding: 10px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background: #64ffda;
+            color: #0a0a0a;
+            transform: translateY(-2px);
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .profile-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .hero {
+                text-align: center;
+                padding: 0 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container mx-auto px-6 py-4">
-      <div class="flex justify-between items-center">
-        <a href="#home" class="text-2xl font-bold">
-          <span class="text-white">Aashita</span><span class="text-cyan-400">Jain</span>
-        </a>
-        <div class="hidden md:flex space-x-8">
-          <a href="#home" class="text-white hover:text-cyan-400 transition">Home</a>
-          <a href="#about" class="text-white hover:text-cyan-400 transition">About</a>
-          <a href="#education" class="text-white hover:text-cyan-400 transition">Education</a>
-          <a href="#skills" class="text-white hover:text-cyan-400 transition">Skills</a>
-          <a href="#projects" class="text-white hover:text-cyan-400 transition">Projects</a>
-          <a href="#contact" class="text-white hover:text-cyan-400 transition">Contact</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold">
+                    <span class="text-white">Aashita</span><span class="text-cyan-400">Jain</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-cyan-400 transition">Home</a>
+                    <a href="#about" class="text-white hover:text-cyan-400 transition">About</a>
+                    <a href="#education" class="text-white hover:text-cyan-400 transition">Education</a>
+                    <a href="#skills" class="text-white hover:text-cyan-400 transition">Skills</a>
+                    <a href="#projects" class="text-white hover:text-cyan-400 transition">Projects</a>
+                    <a href="#contact" class="text-white hover:text-cyan-400 transition">Contact</a>
+                </div>
+                <button class="md:hidden text-white text-xl" id="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
-        <button class="md:hidden text-white text-xl" id="mobile-toggle" aria-label="Open menu">
-          <i class="fas fa-bars"></i>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="absolute top-6 right-6 text-white text-2xl" id="mobile-close">
+            <i class="fas fa-times"></i>
         </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <button class="absolute top-6 right-6 text-white text-2xl" id="mobile-close" aria-label="Close menu">
-      <i class="fas fa-times"></i>
-    </button>
-    <a href="#home" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Home</a>
-    <a href="#about" class="text-white text-xl mb-6 hover:text-cyan-400 transition">About</a>
-    <a href="#education" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Education</a>
-    <a href="#skills" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Skills</a>
-    <a href="#projects" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Projects</a>
-    <a href="#contact" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Contact</a>
-  </div>
-
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="particles">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <a href="#home" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Home</a>
+        <a href="#about" class="text-white text-xl mb-6 hover:text-cyan-400 transition">About</a>
+        <a href="#education" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Education</a>
+        <a href="#skills" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Skills</a>
+        <a href="#projects" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Projects</a>
+        <a href="#contact" class="text-white text-xl mb-6 hover:text-cyan-400 transition">Contact</a>
     </div>
 
-    <div class="container mx-auto px-6 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="fade-in">
-          <p class="text-cyan-400 text-lg mb-4">Hello, I'm</p>
-          <h1 class="text-5xl lg:text-7xl font-bold mb-6">
-            Aashita <span class="text-cyan-400">Jain</span>
-          </h1>
-          <div class="text-2xl lg:text-3xl mb-6 h-12">
-            <span class="typing-text" id="typing">MSc Economics Student</span>
-          </div>
-          <p class="text-gray-300 text-lg mb-8 leading-relaxed max-w-lg">
-            Passionate about transforming complex economic data into actionable insights.
-            Specializing in econometrics, data analysis, and policy research.
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="#projects" class="inline-block bg-gradient-to-br from-cyan-300 to-cyan-500 text-black font-semibold px-6 py-3 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition">
-              View My Work
-            </a>
-            <a href="#contact" class="inline-block border-2 border-cyan-400 text-cyan-300 px-6 py-3 rounded-full hover:bg-cyan-400 hover:text-black transition font-semibold">
-              Get In Touch
-            </a>
-            <a href="https://drive.google.com/file/d/1RKtv1KLdgWoLS3KLTQYlUCDNonAxl4C3/view" target="_blank" rel="noopener noreferrer"
-               class="inline-block border-2 border-cyan-400 text-cyan-300 px-6 py-3 rounded-full hover:bg-cyan-400 hover:text-black transition font-semibold">
-              Download CV <i class="fas fa-download ml-2"></i>
-            </a>
-          </div>
-          <div class="flex space-x-6 mt-8">
-            <a href="https://www.linkedin.com/in/aashita-jain-8aa2321b6/" class="text-2xl text-gray-400 hover:text-cyan-400 transition" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://aashitajain.github.io" class="text-2xl text-gray-400 hover:text-cyan-400 transition" target="_blank" rel="noopener noreferrer" aria-label="Website">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="mailto:aashitajain7331@gmail.com" class="text-2xl text-gray-400 hover:text-cyan-400 transition" aria-label="Email">
-              <i class="fas fa-envelope"></i>
-            </a>
-          </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
-
-        <div class="flex justify-center fade-in">
-          <div class="profile-container">
-            <div class="profile-image" aria-label="Profile">
-              <span id="profile-initials">AJ</span>
-              <!-- Profile photo from Google Drive (converted to direct-view) -->
-              <img
-                src="https://drive.google.com/uc?export=view&id=1v78Q4WsFWvYMHU5yr9EhduOS_9GqIRqH"
-                alt="Portrait of Aashita Jain"
-                loading="eager"
-                onload="var s=document.getElementById('profile-initials'); if(s){s.style.display='none';}"
-                onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';"
-              />
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container mx-auto px-6">
-      <h2 class="section-title fade-in">About Me</h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="fade-in">
-          <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Get to know me!</h3>
-          <p class="text-gray-300 mb-6 leading-relaxed">
-            I'm an aspiring economist equipped with data analytical skills with a passion for applying quantitative methods and big data tools to solve real-world economic challenges. My academic journey has equipped me with strong analytical skills and a deep understanding of economic theory.
-          </p>
-          <p class="text-gray-300 mb-6 leading-relaxed">
-            Through the coursework and academic research, I've developed expertise in econometric analysis, statistical modeling, machine learning and data visualization. I'm particularly interested in data analytics, public policy, and the intersection of technology and economic research.
-          </p>
-          <p class="text-gray-300 mb-8 leading-relaxed">
-            I'm actively seeking opportunities in economic research, policy analysis, or financial consulting
-            where I can apply my analytical skills and contribute to meaningful insights.
-          </p>
-          <a href="#contact" class="inline-block bg-gradient-to-br from-cyan-300 to-cyan-500 text-black font-semibold px-6 py-3 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition">
-            Contact Me
-          </a>
-        </div>
-
-        <div class="fade-in">
-          <h3 class="text-2xl font-semibold mb-6 text-cyan-400">My Skills</h3>
-          <div class="grid grid-cols-2 gap-4">
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fab fa-python"></i></div>
-              <h4 class="font-semibold">Python</h4>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
-              <h4 class="font-semibold">RStudio & PowerBI</h4>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-database"></i></div>
-              <h4 class="font-semibold">Machine Learning</h4>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-table"></i></div>
-              <h4 class="font-semibold">Advance Excel</h4>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
-              <h4 class="font-semibold">Econometrics</h4>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-brain"></i></div>
-              <h4 class="font-semibold">Big Data</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education -->
-  <section id="education" class="section bg-gray-900">
-    <div class="container mx-auto px-6">
-      <h2 class="section-title fade-in">Education & Experience</h2>
-
-      <!-- Desktop timeline -->
-      <div class="relative max-w-4xl mx-auto hidden md:block">
-        <div class="absolute left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-cyan-400 to-blue-500 h-full"></div>
-
-        <div class="space-y-12">
-          <div class="relative flex items-center fade-in">
-            <div class="w-1/2 pr-8 text-right">
-              <div class="card">
-                <div class="flex items-center justify-end mb-4">
-                  <span class="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4">Current</span>
-                  <div class="text-cyan-400 text-2xl"><i class="fas fa-graduation-cap"></i></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <p class="text-cyan-400 text-lg mb-4">Hello, I'm</p>
+                    <h1 class="text-5xl lg:text-7xl font-bold mb-6">
+                        Aashita <span class="text-cyan-400">Jain</span>
+                    </h1>
+                    <div class="text-2xl lg:text-3xl mb-6 h-12">
+                        <span class="typing-text">MSc Economics Student</span>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed max-w-lg">
+                        Passionate about transforming complex economic data into actionable insights. 
+                        Specializing in econometrics, data analysis, and policy research.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="btn-primary">View My Work</a>
+                        <a href="#contact" class="btn-outline">Get In Touch</a>
+                        <a href="https://drive.google.com/file/d/1RKtv1KLdgWoLS3KLTQYlUCDNonAxl4C3/view" class="btn-outline" id="download-cv" download target="_blank" rel="noopener noreferrer">Download CV <i class="fas fa-download ml-2"></i></a>
+                    </div>
+                    <div class="flex space-x-6 mt-8">
+                        <a href="https://www.linkedin.com/in/aashita-jain-8aa2321b6/" class="text-2xl text-gray-400 hover:text-cyan-400 transition" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/AashitaJain25/.github.io" class="text-2xl text-gray-400 hover:text-cyan-400 transition" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:aashitajain7331@gmail.com" class="text-2xl text-gray-400 hover:text-cyan-400 transition">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                 </div>
-                <h3 class="text-2xl font-bold text-cyan-400 mb-2">MSc Economics</h3>
-                <p class="text-xl text-white mb-2">Symbiosis School of Economics, Pune</p>
-                <p class="text-gray-400 mb-4">2024 - 2026</p>
-                <p class="text-gray-300 mb-4">Specialization: Data Analytics</p>
-                <div class="bg-cyan-400/10 p-4 rounded-lg border border-cyan-400/20">
-                  <p class="text-cyan-400 font-semibold">Current GPA: 8.24/10.0</p>
+                
+                <div class="flex justify-center fade-in">
+                    <div class="profile-container">
+                        <div class="profile-image" id="profile-image">
+                            <img id="profile-photo" src="" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;">
+                            <span id="profile-initials">AJ</span>
+                            <div class="photo-upload-overlay" id="photo-upload-overlay">
+                                <i class="fas fa-camera text-2xl mb-2"></i>
+                                <p class="text-sm">Click to upload photo</p>
+                            </div>
+                        </div>
+                        <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-cyan-400 rounded-full border-4 border-gray-900 z-10"></div>
-            <div class="w-1/2 pl-8"></div>
-          </div>
-
-          <div class="relative flex items-center fade-in">
-            <div class="w-1/2 pr-8"></div>
-            <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-gray-900 z-10"></div>
-            <div class="w-1/2 pl-8">
-              <div class="card">
-                <div class="flex items-center mb-4">
-                  <div class="text-blue-400 text-2xl mr-4"><i class="fas fa-briefcase"></i></div>
-                  <span class="bg-blue-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Internship</span>
-                </div>
-                <h3 class="text-2xl font-bold text-blue-400 mb-2">Data Analytics Intern</h3>
-                <p class="text-xl text-white mb-2">EnProSys InfoTech</p>
-                <p class="text-gray-400 mb-4">Summer 2025</p>
-                <p class="text-gray-300 mb-4">Built dynamic dashboards in Power BI to visualize multi-year data across segments. Identified sales trends and seasonal components to give Insights and policy suggestions that improved report clarity for managers.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative flex items-center fade-in">
-            <div class="w-1/2 pr-8 text-right">
-              <div class="card">
-                <div class="flex items-center justify-end mb-4">
-                  <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4">Completed</span>
-                  <div class="text-green-400 text-2xl"><i class="fas fa-graduation-cap"></i></div>
-                </div>
-                <h3 class="text-2xl font-bold text-green-400 mb-2">BSc Economics</h3>
-                <p class="text-xl text-white mb-2">NMIMS, Navi Mumbai</p>
-                <p class="text-gray-400 mb-4">2020 - 2023</p>
-                <div class="bg-green-400/10 p-4 rounded-lg border border-green-400/20">
-                  <p class="text-green-400 font-semibold"></p>
-                </div>
-              </div>
-            </div>
-            <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-green-400 rounded-full border-4 border-gray-900 z-10"></div>
-            <div class="w-1/2 pl-8"></div>
-          </div>
-
-          <div class="relative flex items-center fade-in">
-            <div class="w-1/2 pr-8"></div>
-            <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-purple-400 rounded-full border-4 border-gray-900 z-10"></div>
-            <div class="w-1/2 pl-8">
-              <div class="card">
-                <div class="flex items-center mb-4">
-                  <div class="text-purple-400 text-2xl mr-4"><i class="fas fa-chart-line"></i></div>
-                  <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Internship</span>
-                </div>
-                <h3 class="text-2xl font-bold text-purple-400 mb-2">  Wealth Management Intern</h3>
-                <p class="text-xl text-white mb-2">Arihant Capital Pvt. Ltd.</p>
-                <p class="text-gray-400 mb-4">Summer 2022</p>
-                <p class="text-gray-300 mb-4">Worked on several projects of various departments like research, analytic, wealth, equity and marketing. Analyzed the company’s financial reports and in-depth study of client data for marketing and strategic purposes.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative flex items-center fade-in">
-            <div class="w-1/2 pr-8 text-right">
-              <div class="card">
-                <div class="flex items-center justify-end mb-4">
-                  <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4"></span>
-                  <div class="text-yellow-400 text-2xl"><i class="fas fa-users"></i></div>
-                </div>
-                <h3 class="text-2xl font-bold text-yellow-400 mb-2">High School</h3>
-                <p class="text-xl text-white mb-2">Choithram School, Indore</p>
-                <p class="text-gray-400 mb-4">2020</p>
-                <p class="text-gray-300 mb-4">Commerce with Mathematics</p>
-              </div>
-            </div>
-            <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-yellow-400 rounded-full border-4 border-gray-900 z-10"></div>
-            <div class="w-1/2 pl-8"></div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Mobile list -->
-      <div class="block md:hidden">
-        <div class="relative">
-          <div class="absolute left-8 top-0 w-1 bg-gradient-to-b from-cyan-400 to-yellow-400 h-full"></div>
-
-          <div class="space-y-8">
-            <div class="relative pl-16 fade-in">
-              <div class="absolute left-6 w-6 h-6 bg-cyan-400 rounded-full border-4 border-gray-900"></div>
-              <div class="card">
-                <span class="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Current</span>
-                <h3 class="text-xl font-bold text-cyan-400 mb-2">MSc Economics</h3>
-                <p class="text-white mb-1">Symbiosis School of Economics, Pune</p>
-                <p class="text-gray-400 text-sm mb-3">2024 - 2026</p>
-                <p class="text-gray-300 text-sm">Specialization: Data Analytics</p>
-              </div>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Get to know me!</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        I'm an aspiring economist equipped with data analytical skills with a passion for applying quantitative methods and big data tools to solve real-world economic challenges. My academic journey has equipped me with strong analytical skills and a deep understanding of economic theory.
+                    </p>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Through the coursework and academic research, I've developed expertise in econometric analysis, statistical modeling, machine learning and data visualization. I'm particularly interested in data analytics, public policy, and the intersection of technology and economic research.
+                    </p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        I'm actively seeking opportunities in economic research, policy analysis, or financial consulting where I can apply my analytical skills and contribute to meaningful economic insights.
+                    </p>
+                    <a href="#contact" class="btn-primary">Contact Me</a>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 text-cyan-400">My Skills</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <h4 class="font-semibold">Python</h4>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4 class="font-semibold">RStudio & PowerBI</h4>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h4 class="font-semibold">Machine Learning</h4>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <h4 class="font-semibold">Excel & SQL</h4>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h4 class="font-semibold">Econometrics</h4>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4 class="font-semibold">Big Data</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="relative pl-16 fade-in">
-              <div class="absolute left-6 w-6 h-6 bg-blue-400 rounded-full border-4 border-gray-900"></div>
-              <div class="card">
-                <span class="bg-blue-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Internship</span>
-                <h3 class="text-xl font-bold text-blue-400 mb-2">Data Analytics Intern</h3>
-                <p class="text-white mb-1">EnProSys InfoTech</p>
-                <p class="text-gray-400 text-sm">Summer 2025</p>
-              </div>
-            </div>
-
-            <div class="relative pl-16 fade-in">
-              <div class="absolute left-6 w-6 h-6 bg-green-400 rounded-full border-4 border-gray-900"></div>
-              <div class="card">
-                <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Completed</span>
-                <h3 class="text-xl font-bold text-green-400 mb-2">BSc Economics</h3>
-                <p class="text-white mb-1">NMIMS, Navi Mumbai</p>
-                <p class="text-gray-400 text-sm">2020 - 2023</p>
-              </div>
-            </div>
-
-            <div class="relative pl-16 fade-in">
-              <div class="absolute left-6 w-6 h-6 bg-yellow-400 rounded-full border-4 border-gray-900"></div>
-              <div class="card">
-                <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block"></span>
-                <h3 class="text-xl font-bold text-yellow-400 mb-2">High School</h3>
-                <p class="text-white mb-1">Choithram School, Indore</p>
-                <p class="text-gray-400 text-sm">2020</p>
-              </div>
-            </div>
-
-          </div>
         </div>
-      </div>
+    </section>
 
+    <!-- Education & Experience Section -->
+    <section id="education" class="section bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title fade-in">Education & Experience</h2>
+            
+            <!-- Timeline Container -->
+            <div class="relative max-w-4xl mx-auto hidden md:block">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-cyan-400 to-blue-500 h-full"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- MSc Economics -->
+                    <div class="relative flex items-center fade-in">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="card">
+                                <div class="flex items-center justify-end mb-4">
+                                    <span class="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4">Current</span>
+                                    <div class="text-cyan-400 text-2xl">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-2xl font-bold text-cyan-400 mb-2">MSc Economics</h3>
+                                <p class="text-xl text-white mb-2">Symbiosis School of Economics, Pune</p>
+                                <p class="text-gray-400 mb-4">2024 - 2026</p>
+                                <p class="text-gray-300 mb-4">Specialization: Data Analytics</p>
+                                <div class="bg-cyan-400/10 p-4 rounded-lg border border-cyan-400/20">
+                                    <p class="text-cyan-400 font-semibold">Current GPA: 8.24/10.0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-cyan-400 rounded-full border-4 border-gray-900 z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                    <!-- Internship -->
+                    <div class="relative flex items-center fade-in">
+                        <div class="w-1/2 pr-8"></div>
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-gray-900 z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="card">
+                                <div class="flex items-center mb-4">
+                                    <div class="text-blue-400 text-2xl mr-4">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <span class="bg-blue-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Internship</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-blue-400 mb-2">Data Analytics Intern</h3>
+                                <p class="text-xl text-white mb-2">EnProSys InfoTech</p>
+                                <p class="text-gray-400 mb-4">Summer 2025</p>
+                                <p class="text-gray-300 mb-4">Built dynamic dashboards in Power BI to visualize multi-year data across segments. Identified sales trends and seasonal components to give Insights and policy suggestions that improved report clarity for managers.</p>
+                                <div class="bg-blue-400/10 p-4 rounded-lg border border-blue-400/20">
+                                    <p class="text-blue-400 font-semibold">PowerBI, SQL, Python </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BSc Economics -->
+                    <div class="relative flex items-center fade-in">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="card">
+                                <div class="flex items-center justify-end mb-4">
+                                    <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4">Completed</span>
+                                    <div class="text-green-400 text-2xl">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-2xl font-bold text-green-400 mb-2">BSc Economics</h3>
+                                <p class="text-xl text-white mb-2">NMIMS, Navi Mumbai</p>
+                                <p class="text-gray-400 mb-4">2020 - 2023</p>
+                                <p class="text-gray-300 mb-4"></p>
+                                <div class="bg-green-400/10 p-4 rounded-lg border border-green-400/20">
+                                    <p class="text-green-400 font-semibold">Final CGPA: 2.95/4.00</p>
+                                    <p class="text-sm text-gray-400 mt-1"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-400 rounded-full border-4 border-gray-900 z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                    <!-- Banking Internship -->
+                    <div class="relative flex items-center fade-in">
+                        <div class="w-1/2 pr-8"></div>
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-purple-400 rounded-full border-4 border-gray-900 z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="card">
+                                <div class="flex items-center mb-4">
+                                    <div class="text-purple-400 text-2xl mr-4">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Internship</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-purple-400 mb-2">Wealth Management Intern</h3>
+                                <p class="text-xl text-white mb-2">Arihant Capital Pvt. Ltd.</p>
+                                <p class="text-gray-400 mb-4">Summer 2022</p>
+                                <p class="text-gray-300 mb-4">Worked on several projects of various departments like research, analytic, wealth, equity and marketing. Analyzed the company’s financial reports and in-depth study of client data for marketing and strategic purposes.</p>
+                                <div class="bg-purple-400/10 p-4 rounded-lg border border-purple-400/20">
+                                    <p class="text-purple-400 font-semibold">Advance Excel, Quantitative Analysis, Portfolio management</p>
+                                    <p class="text-sm text-gray-400 mt-1">Improved reporting efficiency by 40%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part-time Role -->
+                    <div class="relative flex items-center fade-in">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="card">
+                                <div class="flex items-center justify-end mb-4">
+                                    <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4"></span>
+                                    <div class="text-yellow-400 text-2xl">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-2xl font-bold text-yellow-400 mb-2">High School</h3>
+                                <p class="text-xl text-white mb-2">Choithram School, Indore</p>
+                                <p class="text-gray-400 mb-4">2020</p>
+                                <p class="text-gray-300 mb-4">Commerce with Mathematics</p>
+                                <div class="bg-yellow-400/10 p-4 rounded-lg border border-yellow-400/20">
+                                    <p class="text-yellow-400 font-semibold">Final Grade : 85%</p>
+                                    <p class="text-sm text-gray-400 mt-1"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-yellow-400 rounded-full border-4 border-gray-900 z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Timeline (Responsive) -->
+            <div class="block md:hidden">
+                <div class="relative">
+                    <!-- Mobile Timeline Line -->
+                    <div class="absolute left-8 top-0 w-1 bg-gradient-to-b from-cyan-400 to-yellow-400 h-full"></div>
+                    
+                    <div class="space-y-8">
+                        <!-- Mobile Timeline Items -->
+                        <div class="relative pl-16 fade-in">
+                            <div class="absolute left-6 w-6 h-6 bg-cyan-400 rounded-full border-4 border-gray-900"></div>
+                            <div class="card">
+                                <span class="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Current</span>
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">MSc Economics</h3>
+                                <p class="text-white mb-1">Symbiosis School of Economics, Pune</p>
+                                <p class="text-gray-400 text-sm mb-3">2024 - 2026</p>
+                                <p class="text-gray-300 text-sm mb-3">Specialization: Data Analytics</p>
+                                <div class="bg-cyan-400/10 p-3 rounded-lg border border-cyan-400/20">
+                                    <p class="text-cyan-400 font-semibold text-sm">Current GPA: 8.24/10.0</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-16 fade-in">
+                            <div class="absolute left-6 w-6 h-6 bg-blue-400 rounded-full border-4 border-gray-900"></div>
+                            <div class="card">
+                                <span class="bg-blue-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Internship</span>
+                                <h3 class="text-xl font-bold text-blue-400 mb-2">Data Analytics Intern</h3>
+                                <p class="text-white mb-1">EnProSys InfoTech</p>
+                                <p class="text-gray-400 text-sm mb-3">Summer 2025</p>
+                                <p class="text-gray-300 text-sm">Built dynamic dashboards in Power BI to visualize multi-year data across segments. Identified sales trends and seasonal components to give Insights and policy suggestions that improved report clarity for managers.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-16 fade-in">
+                            <div class="absolute left-6 w-6 h-6 bg-green-400 rounded-full border-4 border-gray-900"></div>
+                            <div class="card">
+                                <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Completed</span>
+                                <h3 class="text-xl font-bold text-green-400 mb-2">BSc Economics</h3>
+                                <p class="text-white mb-1">NMIMS, Navi Mumbai</p>
+                                <p class="text-gray-400 text-sm mb-3">2020 - 2023</p>
+                                <div class="bg-green-400/10 p-3 rounded-lg border border-green-400/20">
+                                    <p class="text-green-400 font-semibold text-sm">Final CGPA: 2.95/4.00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-16 fade-in">
+                            <div class="absolute left-6 w-6 h-6 bg-purple-400 rounded-full border-4 border-gray-900"></div>
+                            <div class="card">
+                                <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Internship</span>
+                                <h3 class="text-xl font-bold text-purple-400 mb-2">Wealth Management Intern</h3>
+                                <p class="text-white mb-1">Arihant Capital Pvt. Ltd.</p>
+                                <p class="text-gray-400 text-sm mb-3">Summer 2022</p>
+                                <p class="text-gray-300 text-sm">Worked on several projects of various departments like research, analytic, wealth, equity and marketing. Analyzed the company’s financial reports and in-depth study of client data for marketing and strategic purposes.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-16 fade-in">
+                            <div class="absolute left-6 w-6 h-6 bg-yellow-400 rounded-full border-4 border-gray-900"></div>
+                            <div class="card">
+                                <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Part-time</span>
+                                <h3 class="text-xl font-bold text-yellow-400 mb-2">High School</h3>
+                                <p class="text-white mb-1">Choithram School, Indore</p>
+                                <p class="text-gray-400 text-sm mb-3">2020</p>
+                                <p class="text-gray-300 text-sm">Commerce with Mathematics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title fade-in">Technical Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Programming & Tools</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Python (Pandas, NumPy, Matplotlib)</span>
+                                <span class="text-cyan-400">75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">RStudio & PowerBI</span>
+                                <span class="text-cyan-400">80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">HDFS & Apache spark</span>
+                                <span class="text-cyan-400">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Advance Excel & SQL</span>
+                                <span class="text-cyan-400">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Economic Methods</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Big data Analysis</span>
+                                <span class="text-cyan-400">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Time Series Analysis</span>
+                                <span class="text-cyan-400">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Machine learning & data modeling</span>
+                                <span class="text-cyan-400">80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Data Visualization</span>
+                                <span class="text-cyan-400">75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title fade-in">Academic Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-home text-cyan-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Predicting India's GDP using machine learning methods</h3>
+                            <p class="text-sm text-gray-400">Econometrics • Python • Regression</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">This project applies machine learning techniques to forecast India’s GDP by analyzing historical economic data and key indicators. It aims to provide accurate predictions to support better policy planning and economic decision-making.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Pandas</span>
+                        <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">Apache spark</span>
+                    </div>
+                    <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">
+                        View Project <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-virus text-cyan-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Bilateral trade between India and China pre and post COVID.</h3>
+                            <p class="text-sm text-gray-400">Time Series • R • Policy Analysis</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">This project examines the changes in bilateral trade between India and China, comparing trends before and after the COVID-19 pandemic to understand its impact on key sectors and trade dynamics.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">R</span>
+                        <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Time Series</span>
+                        <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm">Impact Analysis</span>
+                    </div>
+                    <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">
+                        View Project <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-cyan-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Assessing the impact of trade among BRICS Nations- Emerging players in global economy.</h3>
+                            <p class="text-sm text-gray-400">Survey Research • STATA • Qualitative </p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">This study explores the role of trade among BRICS nations in shaping the global economy. It assesses trade flows, economic cooperation, and sectoral performance to understand how these emerging economies are influencing global trade dynamics and strengthening their collective economic position.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">STATA</span>
+                        <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm">Qualitative Research</span>
+                        <span class="bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full text-sm">Trade Statistics</span>
+                    </div>
+                    <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">
+                        View Project <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-globe text-cyan-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">A Comparative Analysis: Performance of Key Sectors in India-China Trade Pre and Post Covid-19.</h3>
+                            <p class="text-sm text-gray-400">Panel Data • NumPy • International Economics</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">This study examines the performance of key sectors in India-China trade, comparing trends before and after the COVID-19 pandemic. It analyzes shifts in trade patterns, sectoral growth, and policy impacts to understand how the pandemic reshaped bilateral economic dynamics.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">R</span>
+                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Panel Data</span>
+                        <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Trade theories</span>
+                    </div>
+                    <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">
+                        View Project <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-xl text-gray-300 mb-12 fade-in">
+                    I'm actively seeking opportunities in economic research, policy analysis, or financial consulting. 
+                    Let's discuss how my analytical skills and fresh perspective can contribute to your organization.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="card text-center fade-in">
+                        <a href="mailto:aashitajain7331@gmail.com" class="block group">
+                            <div class="text-4xl text-cyan-400 mb-4 group-hover:text-cyan-300 transition">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Email</h3>
+                            <p class="text-gray-300 group-hover:underline">aashitajain7331@gmail.com</p>
+                        </a>
+                    </div>
+                    <div class="card text-center fade-in">
+                        <a href="https://www.linkedin.com/in/aashita-jain-8aa2321b6/" target="_blank" rel="noopener noreferrer" class="block group">
+                            <div class="text-4xl text-cyan-400 mb-4 group-hover:text-cyan-300 transition">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
+                            <p class="text-gray-300 group-hover:underline">linkedin.com/in/aashita-jain-8aa2321b6</p>
+                        </a>
+                    </div>
+                    <div class="card text-center fade-in">
+                        <a href="https://github.com/AashitaJain25/.github.io" target="_blank" rel="noopener noreferrer" class="block group">
+                            <div class="text-4xl text-cyan-400 mb-4 group-hover:text-cyan-300 transition">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">GitHub</h3>
+                            <p class="text-gray-300 group-hover:underline">github.com/AashitaJain25/.github.io</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <a href="mailto:aashitajain7331@gmail.com" class="btn-primary text-lg px-8 py-4">
+                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Link Editor Modal -->
+    <div id="link-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-[1003]">
+        <div class="bg-gray-900 border border-cyan-400/30 rounded-2xl w-[92%] max-w-xl p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-semibold text-cyan-300">Edit Links</h3>
+                <button id="close-link-modal" class="text-gray-300 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+            <p class="text-gray-400 text-sm mb-4">Select a link on the page or pick one below to edit its URL. External links will open in a new tab safely.</p>
+            <div id="link-list" class="space-y-3 max-h-64 overflow-auto pr-2"></div>
+            <div class="mt-5 flex items-center gap-2">
+                <input id="link-url" type="text" placeholder="https://your-link.com" class="flex-1 bg-black/40 border border-gray-700 rounded-lg px-3 py-2 text-white outline-none focus:border-cyan-400" />
+                <button id="apply-link" class="bg-cyan-400 text-black font-semibold px-4 py-2 rounded-lg hover:bg-cyan-300">Apply</button>
+            </div>
+            <p id="link-hint" class="text-xs text-gray-500 mt-2">Tip: Include https:// at the start for external sites.</p>
+        </div>
     </div>
-  </section>
 
-  <!-- Skills -->
-  <section id="skills" class="section">
-    <div class="container mx-auto px-6">
-      <h2 class="section-title fade-in">Technical Skills</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div class="fade-in">
-          <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Programming & Tools</h3>
-          <div class="space-y-6">
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Python (Pandas, NumPy, Matplotlib)</span><span class="text-cyan-400">75%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="75%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">RStudio & PowerBI</span><span class="text-cyan-400">80%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="80%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">HDFS & Apache spark</span><span class="text-cyan-400">85%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Excel & SQL</span><span class="text-cyan-400">90%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="90%"></div></div>
-            </div>
-          </div>
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">© 2024 Aashita Jain. All rights reserved.</p>
         </div>
+    </footer>
 
-        <div class="fade-in">
-          <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Economic Methods</h3>
-          <div class="space-y-6">
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Big Data Analysis</span><span class="text-cyan-400">90%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="90%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Time Series Analysis</span><span class="text-cyan-400">85%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="85%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Machine Learning</span><span class="text-cyan-400">80%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="80%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Data Visualization</span><span class="text-cyan-400">75%</span></div>
-              <div class="progress-bar"><div class="progress-fill" data-width="75%"></div></div>
-            </div>
-          </div>
-        </div>
+    <script>
+        // Make content editable
+        function makeEditable() {
+            // Make all text content editable
+            const editableSelectors = [
+                'h1', 'h2', 'h3', 'h4', 'p', 'span:not(.progress-fill):not(.particle)',
+                '.section-title', '.typing-text', '.btn-primary', '.btn-outline'
+            ];
+            
+            editableSelectors.forEach(selector => {
+                document.querySelectorAll(selector).forEach(element => {
+                    // Skip elements that shouldn't be editable
+                    if (element.closest('.progress-bar') || 
+                        element.classList.contains('particle') ||
+                        element.classList.contains('progress-fill') ||
+                        element.querySelector('i')) {
+                        return;
+                    }
+                    
+                    element.contentEditable = true;
+                    element.style.outline = 'none';
+                    
+                    // Add visual feedback on focus
+                    element.addEventListener('focus', function() {
+                        this.style.backgroundColor = 'rgba(100, 255, 218, 0.1)';
+                        this.style.borderRadius = '4px';
+                        this.style.padding = '2px 4px';
+                    });
+                    
+                    element.addEventListener('blur', function() {
+                        this.style.backgroundColor = '';
+                        this.style.borderRadius = '';
+                        this.style.padding = '';
+                    });
+                });
+            });
 
-      </div>
-    </div>
-  </section>
+            // Make skill percentages editable
+            document.querySelectorAll('.progress-bar').forEach(progressContainer => {
+                const percentageSpan = progressContainer.parentElement.querySelector('.text-cyan-400');
+                const progressFill = progressContainer.querySelector('.progress-fill');
+                
+                if (percentageSpan && progressFill) {
+                    percentageSpan.contentEditable = true;
+                    percentageSpan.style.outline = 'none';
+                    
+                    percentageSpan.addEventListener('blur', function() {
+                        const newPercentage = this.textContent.replace('%', '');
+                        if (!isNaN(newPercentage) && newPercentage >= 0 && newPercentage <= 100) {
+                            progressFill.style.width = newPercentage + '%';
+                            progressFill.setAttribute('data-width', newPercentage + '%');
+                            this.textContent = newPercentage + '%';
+                        }
+                    });
+                    
+                    percentageSpan.addEventListener('focus', function() {
+                        this.style.backgroundColor = 'rgba(100, 255, 218, 0.1)';
+                        this.style.borderRadius = '4px';
+                        this.style.padding = '2px 4px';
+                    });
+                    
+                    percentageSpan.addEventListener('blur', function() {
+                        this.style.backgroundColor = '';
+                        this.style.borderRadius = '';
+                        this.style.padding = '';
+                    });
+                }
+            });
 
-  <!-- Projects -->
-  <section id="projects" class="section bg-gray-900">
-    <div class="container mx-auto px-6">
-      <h2 class="section-title fade-in">Academic Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="card fade-in">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
-              <i class="fas fa-home text-cyan-400 text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold">Predicting India's GDP using machine learning methods</h3>
-              <p class="text-sm text-gray-400">Econometrics • Python • Big Data</p>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">This project applies machine learning techniques to forecast India’s GDP by analyzing historical economic data and key indicators. It aims to provide accurate predictions to support better policy planning and economic decision-making.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Python</span>
-            <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Pandas</span>
-            <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">Apache Spark</span>
-          </div>
-          <a href="#contact" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">Request details <i class="fas fa-arrow-right ml-1"></i></a>
-        </div>
-
-        <div class="card fade-in">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
-              <i class="fas fa-virus text-cyan-400 text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold">Bilateral trade between India and China pre and post COVID.</h3>
-              <p class="text-sm text-gray-400">Time Series • R • Policy Analysis</p>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">This project examines the changes in bilateral trade between India and China, comparing trends before and after the COVID-19 pandemic to understand its impact on key sectors and trade dynamics..</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">R</span>
-            <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Time Series</span>
-            <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm">Policy Analysis</span>
-          </div>
-          <a href="#contact" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">Request details <i class="fas fa-arrow-right ml-1"></i></a>
-        </div>
-
-        <div class="card fade-in">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
-              <i class="fas fa-graduation-cap text-cyan-400 text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold">Assessing the impact of trade among BRICS Nations- Emerging players in global economy.</h3>
-              <p class="text-sm text-gray-400">Quantitative Research • Stata • Statistics</p>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">This study explores the role of trade among BRICS nations in shaping the global economy. It assesses trade flows, economic cooperation, and sectoral performance to understand how these emerging economies are influencing global trade dynamics and strengthening their collective economic position.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">R</span>
-            <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm">Quantitative Research</span>
-            <span class="bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full text-sm">Visualization</span>
-          </div>
-          <a href="#contact" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">Request details <i class="fas fa-arrow-right ml-1"></i></a>
-        </div>
-
-        <div class="card fade-in">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
-              <i class="fas fa-globe text-cyan-400 text-xl"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold">A Comparative Analysis: Performance of Key Sectors in India-China Trade Pre and Post Covid-19.</h3>
-              <p class="text-sm text-gray-400">Panel Data • Stata • Trade theories</p>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-4">This study examines the performance of key sectors in India-China trade, comparing trends before and after the COVID-19 pandemic. It analyzes shifts in trade patterns, sectoral growth, and policy impacts to understand how the pandemic reshaped bilateral economic dynamics.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">R</span>
-            <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Panel Data</span>
-            <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Trade Theories</span>
-          </div>
-          <a href="#contact" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">Request details <i class="fas fa-arrow-right ml-1"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="container mx-auto px-6">
-      <h2 class="section-title fade-in">Get In Touch</h2>
-      <div class="max-w-4xl mx-auto text-center">
-        <p class="text-xl text-gray-300 mb-12 fade-in">
-          I'm actively seeking roles in economic research, policy analysis, or financial consulting.
-          Let's connect and explore how I can contribute.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <a href="mailto:aashitajain7331@gmail.com" class="card text-center fade-in group">
-            <div class="text-4xl text-cyan-400 mb-4 group-hover:text-cyan-300 transition">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">Email</h3>
-            <p class="text-gray-300 group-hover:underline">aashitajain7331@gmail.com</p>
-          </a>
-          <a href="https://www.linkedin.com/in/aashita-jain-8aa2321b6/" target="_blank" rel="noopener noreferrer" class="card text-center fade-in group">
-            <div class="text-4xl text-cyan-400 mb-4 group-hover:text-cyan-300 transition">
-              <i class="fab fa-linkedin"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
-            <p class="text-gray-300 group-hover:underline">linkedin.com/in/aashita-jain-8aa2321b6</p>
-          </a>
-          <a href="https://aashitajain.github.io" target="_blank" rel="noopener noreferrer" class="card text-center fade-in group">
-            <div class="text-4xl text-cyan-400 mb-4 group-hover:text-cyan-300 transition">
-              <i class="fab fa-github"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">Website</h3>
-            <p class="text-gray-300 group-hover:underline">aashitajain.github.io</p>
-          </a>
-        </div>
-        <div class="fade-in helper-wrap">
-          <a href="mailto:aashitajain7331@gmail.com" class="bg-gradient-to-br from-cyan-300 to-cyan-500 text-black font-semibold px-8 py-4 rounded-full inline-flex items-center justify-center hover:shadow-lg hover:-translate-y-0.5 transition text-lg">
-            Send Message <i class="fas fa-paper-plane ml-2"></i>
-          </a>
-
-          <!-- One-click 404.html generator -->
-          <button id="download-404" class="mt-2 border border-cyan-400/50 text-cyan-300 px-4 py-2 rounded-full hover:bg-cyan-400/10 transition text-sm">
-            Download 404 page
-          </button>
-          <p class="text-xs text-gray-500">Add this file to your repo root as 404.html for GitHub Pages.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-black py-8">
-    <div class="container mx-auto px-6 text-center">
-      <p class="text-gray-400">© 2024 Aashita Jain. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    // Navbar scroll
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.navbar');
-      if (window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
-    });
-
-    // Mobile menu
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileClose = document.getElementById('mobile-close');
-    mobileToggle.addEventListener('click', () => mobileMenu.classList.add('active'));
-    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
-    document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('active')));
-
-    // Smooth scroll (same-page only)
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href');
-        if (id.length > 1) {
-          e.preventDefault();
-          const t = document.querySelector(id);
-          if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Add edit mode indicator
+            const editIndicator = document.createElement('div');
+            editIndicator.innerHTML = `
+                <div style="position: fixed; top: 80px; right: 20px; background: rgba(100, 255, 218, 0.9); color: #0a0a0a; padding: 10px 15px; border-radius: 25px; font-weight: 600; z-index: 1001; box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);">
+                    <i class="fas fa-edit" style="margin-right: 8px;"></i>
+                    Edit Mode Active - Click any text to edit!
+                </div>
+            `;
+            document.body.appendChild(editIndicator);
         }
-      });
-    });
 
-    // Reveal + progress bars
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          const bars = entry.target.querySelectorAll('.progress-fill');
-          bars.forEach(bar => {
-            const width = bar.getAttribute('data-width') || '0%';
-            setTimeout(() => { bar.style.width = width; bar.style.transition = 'width 1.6s ease'; }, 150);
-          });
+        // Initialize edit mode
+        makeEditable();
+
+        // Simple local save using browser storage
+        const STORAGE_KEY = 'canvaCodePortfolioEdits_v1';
+        const SELECTORS_TO_SAVE = 'h1, h2, h3, h4, p, a, .typing-text, .card .text-gray-300, .card h3, .card p, .section-title, .skill-item h4, .navbar .text-2xl, footer p, .progress-bar + * .text-cyan-400';
+
+        function serializeEdits() {
+            const data = {
+                text: [],
+                progress: [],
+                photo: ''
+            };
+            document.querySelectorAll(SELECTORS_TO_SAVE).forEach((el, idx) => {
+                data.text.push({ path: getPath(el), html: el.innerHTML });
+            });
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const fill = bar.querySelector('.progress-fill');
+                if (fill) data.progress.push({ path: getPath(fill), width: fill.style.width || fill.getAttribute('data-width') || '' });
+            });
+            const img = document.getElementById('profile-photo');
+            if (img && img.src && img.style.display !== 'none') data.photo = img.src;
+            return data;
         }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Typing effect
-    const typing = document.getElementById('typing');
-    const texts = ['MSc Economics Student', 'Data Analyst', 'Economic Researcher', 'Future Policy Expert'];
-    let tIndex = 0, cIndex = 0, deleting = false;
-    function typeLoop(){
-      const current = texts[tIndex];
-      typing.textContent = deleting ? current.substring(0, cIndex--) : current.substring(0, cIndex++);
-      let speed = deleting ? 50 : 100;
-      if (!deleting && cIndex === current.length){ speed = 1800; deleting = true; }
-      else if (deleting && cIndex < 0){ deleting = false; tIndex = (tIndex+1) % texts.length; cIndex = 0; speed = 500; }
-      setTimeout(typeLoop, speed);
-    }
-    setTimeout(typeLoop, 800);
+        function applyEdits(data) {
+            if (!data) return;
+            (data.text || []).forEach(item => {
+                const el = document.querySelector(item.path);
+                if (el) el.innerHTML = item.html;
+            });
+            (data.progress || []).forEach(item => {
+                const el = document.querySelector(item.path);
+                if (el) {
+                    el.style.width = item.width;
+                    el.setAttribute('data-width', item.width);
+                }
+            });
+            if (data.photo) {
+                const img = document.getElementById('profile-photo');
+                const initials = document.getElementById('profile-initials');
+                if (img) {
+                    img.src = data.photo;
+                    img.style.display = 'block';
+                }
+                if (initials) initials.style.display = 'none';
+            }
+        }
 
-    // 404.html generator (ready for GitHub Pages)
-    document.getElementById('download-404').addEventListener('click', () => {
-      const title = 'Page Not Found • Aashita Jain';
-      const content = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>${title}</title>
-  <meta name="robots" content="noindex"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2364ffda'/%3E%3Cstop offset='1' stop-color='%234fc3f7'/%3E%3C/linearGradient%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='url(%23g)' opacity='0.18'/%3E%3Ctext x='50%25' y='58%25' font-size='34' text-anchor='middle' fill='%2364ffda' font-family='Poppins, Arial, sans-serif'%3EAJ%3C/text%3E%3C/svg%3E"/>
-  <style>
-    body{background:#0a0a0a;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';}
-    .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
-  </style>
-</head>
-<body class="min-h-screen flex items-center justify-center p-6">
-  <main class="max-w-xl w-full text-center">
-    <div class="card rounded-2xl p-8">
-      <div class="text-6xl font-extrabold text-cyan-400 mb-3">404</div>
-      <h1 class="text-2xl font-semibold mb-4">Page not found</h1>
-      <p class="text-gray-300 mb-6">The page you’re looking for doesn’t exist or was moved.</p>
-      <div class="flex flex-wrap items-center justify-center gap-3">
-        <a href="/" class="inline-flex items-center gap-2 bg-gradient-to-br from-cyan-300 to-cyan-500 text-black font-semibold px-5 py-3 rounded-full hover:shadow-lg transition">
-          <i class="fas fa-arrow-left"></i> Back to Home
-        </a>
-        <a href="mailto:aashitajain7331@gmail.com" class="inline-flex items-center gap-2 border border-cyan-400/60 text-cyan-300 px-5 py-3 rounded-full hover:bg-cyan-400/10 transition">
-          <i class="fas fa-envelope"></i> Contact
-        </a>
-      </div>
-      <p class="text-xs text-gray-500 mt-6">If you reached this page from a broken link, please let me know.</p>
-    </div>
-  </main>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981b3626a0833de6',t:'MTc1ODMwNzIyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>`;
-      const blob = new Blob([content.trim()], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = '404.html';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    });
-  </script>
-</body>
+        function getPath(el) {
+            if (!(el instanceof Element)) return '';
+            const path = [];
+            while (el && el.nodeType === Node.ELEMENT_NODE) {
+                let selector = el.nodeName.toLowerCase();
+                if (el.id) {
+                    selector += '#' + el.id;
+                    path.unshift(selector);
+                    break;
+                } else {
+                    let sib = el, nth = 1;
+                    while (sib = sib.previousElementSibling) {
+                        if (sib.nodeName.toLowerCase() === selector) nth++;
+                    }
+                    selector += `:nth-of-type(${nth})`;
+                }
+                path.unshift(selector);
+                el = el.parentElement;
+            }
+            return path.join(' > ');
+        }
+
+        // Load saved edits on startup
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) applyEdits(JSON.parse(saved));
+        } catch (e) { /* ignore */ }
+
+        // Save and reset buttons
+        document.getElementById('save-btn')?.addEventListener('click', () => {
+            try {
+                const data = serializeEdits();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                showToast('Changes saved!');
+            } catch (e) {
+                showToast('Unable to save.');
+            }
+        });
+
+        document.getElementById('reset-btn')?.addEventListener('click', () => {
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload();
+        });
+
+        // Link editing
+        const linkModal = document.getElementById('link-modal');
+        const linkList = document.getElementById('link-list');
+        const linkUrl = document.getElementById('link-url');
+        const applyLink = document.getElementById('apply-link');
+        const linksBtn = document.getElementById('links-btn');
+        const closeLinkModal = document.getElementById('close-link-modal');
+        let activeLink = null;
+
+        function openLinksPanel() {
+            linkList.innerHTML = '';
+            const links = Array.from(document.querySelectorAll('a'))
+                .filter(a => !a.closest('#edit-toolbar') && !a.closest('#link-modal'));
+            links.forEach((a, i) => {
+                const item = document.createElement('button');
+                item.className = 'w-full text-left bg-black/30 border border-gray-700 hover:border-cyan-400/50 rounded-lg px-3 py-2 text-sm text-gray-200';
+                item.innerHTML = `<div class="font-semibold text-white">${(a.textContent || 'Untitled link').trim() || 'Untitled link'}</div>
+                                  <div class="text-xs text-gray-400">${a.href || '(no link set)'}</div>`;
+                item.addEventListener('click', () => {
+                    activeLink = a;
+                    linkUrl.value = a.getAttribute('href') || '';
+                    highlightLink(a);
+                });
+                linkList.appendChild(item);
+            });
+            linkModal.classList.remove('hidden');
+            linkModal.classList.add('flex');
+        }
+
+        function closeLinksPanel() {
+            linkModal.classList.add('hidden');
+            linkModal.classList.remove('flex');
+            removeHighlight();
+            activeLink = null;
+        }
+
+        function highlightLink(el) {
+            removeHighlight();
+            el.style.outline = '2px solid #64ffda';
+            el.style.outlineOffset = '2px';
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function removeHighlight() {
+            document.querySelectorAll('a').forEach(a => { a.style.outline = ''; a.style.outlineOffset = ''; });
+        }
+
+        linksBtn?.addEventListener('click', openLinksPanel);
+        closeLinkModal?.addEventListener('click', closeLinksPanel);
+        linkModal?.addEventListener('click', (e) => { if (e.target === linkModal) closeLinksPanel(); });
+
+        // Click any link to edit its URL directly
+        document.querySelectorAll('a').forEach(a => {
+            a.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                activeLink = a;
+                openLinksPanel();
+                linkUrl.value = a.getAttribute('href') || '';
+                highlightLink(a);
+            });
+        });
+
+        applyLink?.addEventListener('click', () => {
+            if (!activeLink) return;
+            const url = linkUrl.value.trim();
+            if (!url) {
+                activeLink.removeAttribute('href');
+                showToast('Link removed');
+                return;
+            }
+            // Open external links in a new tab safely
+            if (/^https?:\/\//i.test(url)) {
+                activeLink.setAttribute('href', url);
+                activeLink.setAttribute('target', '_blank');
+                activeLink.setAttribute('rel', 'noopener noreferrer');
+            } else if (url.startsWith('#')) {
+                activeLink.setAttribute('href', url);
+                activeLink.removeAttribute('target');
+                activeLink.removeAttribute('rel');
+            } else {
+                // If missing protocol, assume https
+                activeLink.setAttribute('href', 'https://' + url);
+                activeLink.setAttribute('target', '_blank');
+                activeLink.setAttribute('rel', 'noopener noreferrer');
+            }
+            showToast('Link updated');
+        });
+
+        // Include link hrefs in save data
+        function serializeEdits() {
+            const data = {
+                text: [],
+                progress: [],
+                photo: '',
+                links: []
+            };
+            document.querySelectorAll(SELECTORS_TO_SAVE).forEach((el) => {
+                data.text.push({ path: getPath(el), html: el.innerHTML });
+            });
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const fill = bar.querySelector('.progress-fill');
+                if (fill) data.progress.push({ path: getPath(fill), width: fill.style.width || fill.getAttribute('data-width') || '' });
+            });
+            const img = document.getElementById('profile-photo');
+            if (img && img.src && img.style.display !== 'none') data.photo = img.src;
+            document.querySelectorAll('a').forEach(a => {
+                data.links.push({ path: getPath(a), href: a.getAttribute('href') || '', target: a.getAttribute('target') || '', rel: a.getAttribute('rel') || '' });
+            });
+            return data;
+        }
+
+        function applyEdits(data) {
+            if (!data) return;
+            (data.text || []).forEach(item => {
+                const el = document.querySelector(item.path);
+                if (el) el.innerHTML = item.html;
+            });
+            (data.progress || []).forEach(item => {
+                const el = document.querySelector(item.path);
+                if (el) {
+                    el.style.width = item.width;
+                    el.setAttribute('data-width', item.width);
+                }
+            });
+            if (data.photo) {
+                const img = document.getElementById('profile-photo');
+                const initials = document.getElementById('profile-initials');
+                if (img) {
+                    img.src = data.photo;
+                    img.style.display = 'block';
+                }
+                if (initials) initials.style.display = 'none';
+            }
+            (data.links || []).forEach(item => {
+                const a = document.querySelector(item.path);
+                if (a) {
+                    if (item.href) a.setAttribute('href', item.href); else a.removeAttribute('href');
+                    if (item.target) a.setAttribute('target', item.target); else a.removeAttribute('target');
+                    if (item.rel) a.setAttribute('rel', item.rel); else a.removeAttribute('rel');
+                }
+            });
+        }
+
+        // Toast helper
+        function showToast(msg) {
+            const t = document.createElement('div');
+            t.textContent = msg;
+            t.className = 'fixed bottom-6 right-6 bg-black/80 text-white px-4 py-2 rounded-lg border border-cyan-400/30 shadow';
+            t.style.zIndex = 1003;
+            document.body.appendChild(t);
+            setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .4s'; }, 1600);
+            setTimeout(() => t.remove(), 2100);
+        }
+
+        // Photo upload functionality
+        const profileImage = document.getElementById('profile-image');
+        const photoInput = document.getElementById('photo-input');
+        const profilePhoto = document.getElementById('profile-photo');
+        const profileInitials = document.getElementById('profile-initials');
+        const uploadOverlay = document.getElementById('photo-upload-overlay');
+
+        profileImage.addEventListener('click', () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profilePhoto.src = e.target.result;
+                    profilePhoto.style.display = 'block';
+                    profileInitials.style.display = 'none';
+                    uploadOverlay.innerHTML = `
+                        <i class="fas fa-camera text-2xl mb-2"></i>
+                        <p class="text-sm">Change photo</p>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileClose = document.getElementById('mobile-close');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate progress bars
+                    if (entry.target.querySelector('.progress-fill')) {
+                        const progressBars = entry.target.querySelectorAll('.progress-fill');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Typing animation (now editable)
+        const typingText = document.querySelector('.typing-text');
+        let texts = ['MSc Economics Student', 'Data Analyst', 'Economic Researcher', 'Future Policy Expert'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingActive = true;
+
+        // Stop typing animation when editing
+        typingText.addEventListener('focus', () => {
+            typingActive = false;
+            typingText.style.borderRight = 'none';
+            typingText.style.animation = 'none';
+        });
+
+        // Resume typing animation when done editing
+        typingText.addEventListener('blur', () => {
+            const newText = typingText.textContent.trim();
+            if (newText) {
+                texts = [newText]; // Use the edited text
+                textIndex = 0;
+                charIndex = newText.length;
+                isDeleting = false;
+                typingActive = true;
+                typingText.style.borderRight = '2px solid #64ffda';
+                typingText.style.animation = 'blink 1s infinite';
+                setTimeout(() => typeWriter(), 2000);
+            }
+        });
+
+        function typeWriter() {
+            if (!typingActive) return;
+            
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Start typing animation
+        setTimeout(typeWriter, 1000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9819f69476a348f5',t:'MTc1ODI5NDEzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
