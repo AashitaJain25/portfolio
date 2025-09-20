@@ -438,14 +438,14 @@
                 <div class="flex justify-center fade-in">
                     <div class="profile-container">
                         <div class="profile-image" id="profile-image">
-                            <img id="profile-photo" src="" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;">
-                            <span id="profile-initials">AJ</span>
-                            <div class="photo-upload-overlay" id="photo-upload-overlay">
-                                <i class="fas fa-camera text-2xl mb-2"></i>
-                                <p class="text-sm">Click to upload photo</p>
-                            </div>
+                            <img id="profile-photo" 
+                                 src="images/profile.jpg" 
+                                 alt="Profile Photo" 
+                                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">
+                            
+                            <!-- Hide initials since photo is shown -->
+                            <span id="profile-initials" style="display: none;">AJ</span>
                         </div>
-                        <input type="file" id="photo-input" accept="image/*" style="display: none;">
                     </div>
                 </div>
             </div>
@@ -460,10 +460,10 @@
                 <div class="fade-in">
                     <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Get to know me!</h3>
                     <p class="text-gray-300 mb-6 leading-relaxed">
-                        I'm an aspiring economist equipped with data analytical skills with a passion for applying quantitative methods and big data tools to solve real-world economic challenges. My academic journey has equipped me with strong analytical skills and a deep understanding of economic theory.
+                        I'm an aspiring economist equipped with data analytical skills with a passion for applying quantitative methods to solve real-world economic challenges. My academic journey has equipped me with strong analytical skills and a deep understanding of economic theory.
                     </p>
                     <p class="text-gray-300 mb-6 leading-relaxed">
-                        Through the coursework and academic research, I've developed expertise in econometric analysis, statistical modeling, machine learning and data visualization. I'm particularly interested in data analytics, public policy, and the intersection of technology and economic research.
+                        Through coursework and independent research, I've developed expertise in econometric analysis, statistical modeling, and data visualization. I'm particularly interested in behavioral economics, development policy, and the intersection of technology and economic research.
                     </p>
                     <p class="text-gray-300 mb-8 leading-relaxed">
                         I'm actively seeking opportunities in economic research, policy analysis, or financial consulting where I can apply my analytical skills and contribute to meaningful economic insights.
@@ -552,7 +552,7 @@
                         <div class="w-1/2 pl-8"></div>
                     </div>
 
-                    <!-- Internship -->
+                    <!-- Research Internship -->
                     <div class="relative flex items-center fade-in">
                         <div class="w-1/2 pr-8"></div>
                         <!-- Timeline Dot -->
@@ -565,12 +565,12 @@
                                     </div>
                                     <span class="bg-blue-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Internship</span>
                                 </div>
-                                <h3 class="text-2xl font-bold text-blue-400 mb-2">Data Analytics Intern</h3>
+                                <h3 class="text-2xl font-bold text-blue-400 mb-2">Research Intern</h3>
                                 <p class="text-xl text-white mb-2">EnProSys InfoTech</p>
                                 <p class="text-gray-400 mb-4">Summer 2025</p>
                                 <p class="text-gray-300 mb-4">Built dynamic dashboards in Power BI to visualize multi-year data across segments. Identified sales trends and seasonal components to give Insights and policy suggestions that improved report clarity for managers.</p>
                                 <div class="bg-blue-400/10 p-4 rounded-lg border border-blue-400/20">
-                                    <p class="text-blue-400 font-semibold">PowerBI, SQL, Python </p>
+                                    <p class="text-blue-400 font-semibold">PowerBI, SQL, Python</p>
                                 </div>
                             </div>
                         </div>
@@ -581,18 +581,17 @@
                         <div class="w-1/2 pr-8 text-right">
                             <div class="card">
                                 <div class="flex items-center justify-end mb-4">
-                                    <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4">Completed</span>
+                                    <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4">Internship</span>
                                     <div class="text-green-400 text-2xl">
                                         <i class="fas fa-graduation-cap"></i>
                                     </div>
                                 </div>
-                                <h3 class="text-2xl font-bold text-green-400 mb-2">BSc Economics</h3>
-                                <p class="text-xl text-white mb-2">NMIMS, Navi Mumbai</p>
-                                <p class="text-gray-400 mb-4">2020 - 2023</p>
-                                <p class="text-gray-300 mb-4"></p>
+                                <h3 class="text-2xl font-bold text-green-400 mb-2">Wealth Management Intern</h3>
+                                <p class="text-xl text-white mb-2">Arihant Capital Pvt. Ltd.</p>
+                                <p class="text-gray-400 mb-4">Summer 2022</p>
+                                <p class="text-gray-300 mb-4">Worked on several projects of various departments like research, analytic, wealth, equity and marketing. Analyzed the company’s financial reports and in-depth study of client data for marketing and strategic purposes.</p>
                                 <div class="bg-green-400/10 p-4 rounded-lg border border-green-400/20">
-                                    <p class="text-green-400 font-semibold">Final CGPA: 2.95/4.00</p>
-                                    <p class="text-sm text-gray-400 mt-1"></p>
+                                    <p class="text-green-400 font-semibold">Advance Excel, Quantitative Analysis, Portfolio management</p>
                                 </div>
                             </div>
                         </div>
@@ -612,15 +611,14 @@
                                     <div class="text-purple-400 text-2xl mr-4">
                                         <i class="fas fa-chart-line"></i>
                                     </div>
-                                    <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Internship</span>
+                                    <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Completed</span>
                                 </div>
-                                <h3 class="text-2xl font-bold text-purple-400 mb-2">Wealth Management Intern</h3>
-                                <p class="text-xl text-white mb-2">Arihant Capital Pvt. Ltd.</p>
-                                <p class="text-gray-400 mb-4">Summer 2022</p>
-                                <p class="text-gray-300 mb-4">Worked on several projects of various departments like research, analytic, wealth, equity and marketing. Analyzed the company’s financial reports and in-depth study of client data for marketing and strategic purposes.</p>
+                                <h3 class="text-2xl font-bold text-purple-400 mb-2">B.Sc Economics</h3>
+                                <p class="text-xl text-white mb-2">NMIMS, Navi Mumbai</p>
+                                <p class="text-gray-400 mb-4">2020 - 2023</p>
+                                <p class="text-gray-300 mb-4"></p>
                                 <div class="bg-purple-400/10 p-4 rounded-lg border border-purple-400/20">
-                                    <p class="text-purple-400 font-semibold">Advance Excel, Quantitative Analysis, Portfolio management</p>
-                                    <p class="text-sm text-gray-400 mt-1">Improved reporting efficiency by 40%</p>
+                                    <p class="text-purple-400 font-semibold">CGPA : 2.95/4.00</p>
                                 </div>
                             </div>
                         </div>
@@ -641,8 +639,7 @@
                                 <p class="text-gray-400 mb-4">2020</p>
                                 <p class="text-gray-300 mb-4">Commerce with Mathematics</p>
                                 <div class="bg-yellow-400/10 p-4 rounded-lg border border-yellow-400/20">
-                                    <p class="text-yellow-400 font-semibold">Final Grade : 85%</p>
-                                    <p class="text-sm text-gray-400 mt-1"></p>
+                                    <p class="text-yellow-400 font-semibold">Final grade: 85%</p>
                                 </div>
                             </div>
                         </div>
@@ -689,12 +686,12 @@
                         <div class="relative pl-16 fade-in">
                             <div class="absolute left-6 w-6 h-6 bg-green-400 rounded-full border-4 border-gray-900"></div>
                             <div class="card">
-                                <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Completed</span>
-                                <h3 class="text-xl font-bold text-green-400 mb-2">BSc Economics</h3>
-                                <p class="text-white mb-1">NMIMS, Navi Mumbai</p>
-                                <p class="text-gray-400 text-sm mb-3">2020 - 2023</p>
+                                <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Internship</span>
+                                <h3 class="text-xl font-bold text-green-400 mb-2">Wealth Management Intern</h3>
+                                <p class="text-white mb-1">Arihant Capital Pvt. Ltd.</p>
+                                <p class="text-gray-400 text-sm mb-3">Summer 2022</p>
                                 <div class="bg-green-400/10 p-3 rounded-lg border border-green-400/20">
-                                    <p class="text-green-400 font-semibold text-sm">Final CGPA: 2.95/4.00</p>
+                                    <p class="text-green-400 font-semibold text-sm">Advance Excel, Quantitative Analysis, Portfolio management</p>
                                 </div>
                             </div>
                         </div>
@@ -702,18 +699,18 @@
                         <div class="relative pl-16 fade-in">
                             <div class="absolute left-6 w-6 h-6 bg-purple-400 rounded-full border-4 border-gray-900"></div>
                             <div class="card">
-                                <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Internship</span>
-                                <h3 class="text-xl font-bold text-purple-400 mb-2">Wealth Management Intern</h3>
-                                <p class="text-white mb-1">Arihant Capital Pvt. Ltd.</p>
-                                <p class="text-gray-400 text-sm mb-3">Summer 2022</p>
-                                <p class="text-gray-300 text-sm">Worked on several projects of various departments like research, analytic, wealth, equity and marketing. Analyzed the company’s financial reports and in-depth study of client data for marketing and strategic purposes.</p>
+                                <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Completed</span>
+                                <h3 class="text-xl font-bold text-purple-400 mb-2">B.Sc Economics</h3>
+                                <p class="text-white mb-1">NMIMS, Navi Mumbai</p>
+                                <p class="text-gray-400 text-sm mb-3">2020 - 2023</p>
+                                <p class="text-gray-300 text-sm">CGPA : 2.95/4.00</p>
                             </div>
                         </div>
 
                         <div class="relative pl-16 fade-in">
                             <div class="absolute left-6 w-6 h-6 bg-yellow-400 rounded-full border-4 border-gray-900"></div>
                             <div class="card">
-                                <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Part-time</span>
+                                <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block"></span>
                                 <h3 class="text-xl font-bold text-yellow-400 mb-2">High School</h3>
                                 <p class="text-white mb-1">Choithram School, Indore</p>
                                 <p class="text-gray-400 text-sm mb-3">2020</p>
@@ -763,7 +760,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">Advance Excel & SQL</span>
+                                <span class="font-medium">Excel & SQL</span>
                                 <span class="text-cyan-400">90%</span>
                             </div>
                             <div class="progress-bar">
@@ -774,11 +771,11 @@
                 </div>
                 
                 <div class="fade-in">
-                    <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Economic Methods</h3>
+                    <h3 class="text-2xl font-semibold mb-6 text-cyan-400">CERTIFICATIONS</h3>
                     <div class="space-y-6">
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">Big data Analysis</span>
+                                <span class="font-medium">Introduction and Applications of Big Data</span>
                                 <span class="text-cyan-400">90%</span>
                             </div>
                             <div class="progress-bar">
@@ -787,7 +784,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">Time Series Analysis</span>
+                                <span class="font-medium">Social Media Data Analytics</span>
                                 <span class="text-cyan-400">85%</span>
                             </div>
                             <div class="progress-bar">
@@ -796,7 +793,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">Machine learning & data modeling</span>
+                                <span class="font-medium">Machine learning and data Modeling</span>
                                 <span class="text-cyan-400">80%</span>
                             </div>
                             <div class="progress-bar">
@@ -805,7 +802,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">Data Visualization</span>
+                                <span class="font-medium">Applied Text Mining in Python</span>
                                 <span class="text-cyan-400">75%</span>
                             </div>
                             <div class="progress-bar">
@@ -830,14 +827,14 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">Predicting India's GDP using machine learning methods</h3>
-                            <p class="text-sm text-gray-400">Econometrics • Python • Regression</p>
+                            <p class="text-sm text-gray-400">Econometrics • Python • Bid Data</p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-4">This project applies machine learning techniques to forecast India’s GDP by analyzing historical economic data and key indicators. It aims to provide accurate predictions to support better policy planning and economic decision-making.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Pandas</span>
-                        <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">Apache spark</span>
+                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Apache spark</span>
+                        <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">Regression</span>
                     </div>
                     <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">
                         View Project <i class="fas fa-arrow-right ml-1"></i>
@@ -858,7 +855,7 @@
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">R</span>
                         <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Time Series</span>
-                        <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm">Impact Analysis</span>
+                        <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm">Policy Analysis</span>
                     </div>
                     <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">
                         View Project <i class="fas fa-arrow-right ml-1"></i>
@@ -872,14 +869,14 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">Assessing the impact of trade among BRICS Nations- Emerging players in global economy.</h3>
-                            <p class="text-sm text-gray-400">Survey Research • STATA • Qualitative </p>
+                            <p class="text-sm text-gray-400">Survey Research • Excel • Statistics</p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-4">This study explores the role of trade among BRICS nations in shaping the global economy. It assesses trade flows, economic cooperation, and sectoral performance to understand how these emerging economies are influencing global trade dynamics and strengthening their collective economic position.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">STATA</span>
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Excel</span>
                         <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm">Qualitative Research</span>
-                        <span class="bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full text-sm">Trade Statistics</span>
+                        <span class="bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full text-sm">Statistics</span>
                     </div>
                     <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">
                         View Project <i class="fas fa-arrow-right ml-1"></i>
@@ -893,12 +890,12 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">A Comparative Analysis: Performance of Key Sectors in India-China Trade Pre and Post Covid-19.</h3>
-                            <p class="text-sm text-gray-400">Panel Data • NumPy • International Economics</p>
+                            <p class="text-sm text-gray-400">Panel Data • Stata • Development Economics</p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-4">This study examines the performance of key sectors in India-China trade, comparing trends before and after the COVID-19 pandemic. It analyzes shifts in trade patterns, sectoral growth, and policy impacts to understand how the pandemic reshaped bilateral economic dynamics.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">R</span>
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Stata</span>
                         <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Panel Data</span>
                         <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Trade theories</span>
                     </div>
@@ -982,4 +979,493 @@
     </footer>
 
     <script>
-        
+        // Make content editable
+        function makeEditable() {
+            // Make all text content editable
+            const editableSelectors = [
+                'h1', 'h2', 'h3', 'h4', 'p', 'span:not(.progress-fill):not(.particle)',
+                '.section-title', '.typing-text', '.btn-primary', '.btn-outline'
+            ];
+            
+            editableSelectors.forEach(selector => {
+                document.querySelectorAll(selector).forEach(element => {
+                    // Skip elements that shouldn't be editable
+                    if (element.closest('.progress-bar') || 
+                        element.classList.contains('particle') ||
+                        element.classList.contains('progress-fill') ||
+                        element.querySelector('i')) {
+                        return;
+                    }
+                    
+                    element.contentEditable = true;
+                    element.style.outline = 'none';
+                    
+                    // Add visual feedback on focus
+                    element.addEventListener('focus', function() {
+                        this.style.backgroundColor = 'rgba(100, 255, 218, 0.1)';
+                        this.style.borderRadius = '4px';
+                        this.style.padding = '2px 4px';
+                    });
+                    
+                    element.addEventListener('blur', function() {
+                        this.style.backgroundColor = '';
+                        this.style.borderRadius = '';
+                        this.style.padding = '';
+                    });
+                });
+            });
+
+            // Make skill percentages editable
+            document.querySelectorAll('.progress-bar').forEach(progressContainer => {
+                const percentageSpan = progressContainer.parentElement.querySelector('.text-cyan-400');
+                const progressFill = progressContainer.querySelector('.progress-fill');
+                
+                if (percentageSpan && progressFill) {
+                    percentageSpan.contentEditable = true;
+                    percentageSpan.style.outline = 'none';
+                    
+                    percentageSpan.addEventListener('blur', function() {
+                        const newPercentage = this.textContent.replace('%', '');
+                        if (!isNaN(newPercentage) && newPercentage >= 0 && newPercentage <= 100) {
+                            progressFill.style.width = newPercentage + '%';
+                            progressFill.setAttribute('data-width', newPercentage + '%');
+                            this.textContent = newPercentage + '%';
+                        }
+                    });
+                    
+                    percentageSpan.addEventListener('focus', function() {
+                        this.style.backgroundColor = 'rgba(100, 255, 218, 0.1)';
+                        this.style.borderRadius = '4px';
+                        this.style.padding = '2px 4px';
+                    });
+                    
+                    percentageSpan.addEventListener('blur', function() {
+                        this.style.backgroundColor = '';
+                        this.style.borderRadius = '';
+                        this.style.padding = '';
+                    });
+                }
+            });
+
+            // Add edit mode indicator
+            const editIndicator = document.createElement('div');
+            editIndicator.innerHTML = `
+                <div style="position: fixed; top: 80px; right: 20px; background: rgba(100, 255, 218, 0.9); color: #0a0a0a; padding: 10px 15px; border-radius: 25px; font-weight: 600; z-index: 1001; box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);">
+                    <i class="fas fa-edit" style="margin-right: 8px;"></i>
+                    Edit Mode Active - Click any text to edit!
+                </div>
+            `;
+            document.body.appendChild(editIndicator);
+        }
+
+        // Initialize edit mode
+        makeEditable();
+
+        // Simple local save using browser storage
+        const STORAGE_KEY = 'canvaCodePortfolioEdits_v1';
+        const SELECTORS_TO_SAVE = 'h1, h2, h3, h4, p, a, .typing-text, .card .text-gray-300, .card h3, .card p, .section-title, .skill-item h4, .navbar .text-2xl, footer p, .progress-bar + * .text-cyan-400';
+
+        function serializeEdits() {
+            const data = {
+                text: [],
+                progress: [],
+                photo: ''
+            };
+            document.querySelectorAll(SELECTORS_TO_SAVE).forEach((el, idx) => {
+                data.text.push({ path: getPath(el), html: el.innerHTML });
+            });
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const fill = bar.querySelector('.progress-fill');
+                if (fill) data.progress.push({ path: getPath(fill), width: fill.style.width || fill.getAttribute('data-width') || '' });
+            });
+            const img = document.getElementById('profile-photo');
+            if (img && img.src && img.style.display !== 'none') data.photo = img.src;
+            return data;
+        }
+
+        function applyEdits(data) {
+            if (!data) return;
+            (data.text || []).forEach(item => {
+                const el = document.querySelector(item.path);
+                if (el) el.innerHTML = item.html;
+            });
+            (data.progress || []).forEach(item => {
+                const el = document.querySelector(item.path);
+                if (el) {
+                    el.style.width = item.width;
+                    el.setAttribute('data-width', item.width);
+                }
+            });
+            if (data.photo) {
+                const img = document.getElementById('profile-photo');
+                const initials = document.getElementById('profile-initials');
+                if (img) {
+                    img.src = data.photo;
+                    img.style.display = 'block';
+                }
+                if (initials) initials.style.display = 'none';
+            }
+        }
+
+        function getPath(el) {
+            if (!(el instanceof Element)) return '';
+            const path = [];
+            while (el && el.nodeType === Node.ELEMENT_NODE) {
+                let selector = el.nodeName.toLowerCase();
+                if (el.id) {
+                    selector += '#' + el.id;
+                    path.unshift(selector);
+                    break;
+                } else {
+                    let sib = el, nth = 1;
+                    while (sib = sib.previousElementSibling) {
+                        if (sib.nodeName.toLowerCase() === selector) nth++;
+                    }
+                    selector += `:nth-of-type(${nth})`;
+                }
+                path.unshift(selector);
+                el = el.parentElement;
+            }
+            return path.join(' > ');
+        }
+
+        // Load saved edits on startup
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) applyEdits(JSON.parse(saved));
+        } catch (e) { /* ignore */ }
+
+        // Save and reset buttons
+        document.getElementById('save-btn')?.addEventListener('click', () => {
+            try {
+                const data = serializeEdits();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                showToast('Changes saved!');
+            } catch (e) {
+                showToast('Unable to save.');
+            }
+        });
+
+        document.getElementById('reset-btn')?.addEventListener('click', () => {
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload();
+        });
+
+        // Link editing
+        const linkModal = document.getElementById('link-modal');
+        const linkList = document.getElementById('link-list');
+        const linkUrl = document.getElementById('link-url');
+        const applyLink = document.getElementById('apply-link');
+        const linksBtn = document.getElementById('links-btn');
+        const closeLinkModal = document.getElementById('close-link-modal');
+        let activeLink = null;
+
+        function openLinksPanel() {
+            linkList.innerHTML = '';
+            const links = Array.from(document.querySelectorAll('a'))
+                .filter(a => !a.closest('#edit-toolbar') && !a.closest('#link-modal'));
+            links.forEach((a, i) => {
+                const item = document.createElement('button');
+                item.className = 'w-full text-left bg-black/30 border border-gray-700 hover:border-cyan-400/50 rounded-lg px-3 py-2 text-sm text-gray-200';
+                item.innerHTML = `<div class="font-semibold text-white">${(a.textContent || 'Untitled link').trim() || 'Untitled link'}</div>
+                                  <div class="text-xs text-gray-400">${a.href || '(no link set)'}</div>`;
+                item.addEventListener('click', () => {
+                    activeLink = a;
+                    linkUrl.value = a.getAttribute('href') || '';
+                    highlightLink(a);
+                });
+                linkList.appendChild(item);
+            });
+            linkModal.classList.remove('hidden');
+            linkModal.classList.add('flex');
+        }
+
+        function closeLinksPanel() {
+            linkModal.classList.add('hidden');
+            linkModal.classList.remove('flex');
+            removeHighlight();
+            activeLink = null;
+        }
+
+        function highlightLink(el) {
+            removeHighlight();
+            el.style.outline = '2px solid #64ffda';
+            el.style.outlineOffset = '2px';
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function removeHighlight() {
+            document.querySelectorAll('a').forEach(a => { a.style.outline = ''; a.style.outlineOffset = ''; });
+        }
+
+        linksBtn?.addEventListener('click', openLinksPanel);
+        closeLinkModal?.addEventListener('click', closeLinksPanel);
+        linkModal?.addEventListener('click', (e) => { if (e.target === linkModal) closeLinksPanel(); });
+
+        // Click any link to edit its URL directly
+        document.querySelectorAll('a').forEach(a => {
+            a.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                activeLink = a;
+                openLinksPanel();
+                linkUrl.value = a.getAttribute('href') || '';
+                highlightLink(a);
+            });
+        });
+
+        applyLink?.addEventListener('click', () => {
+            if (!activeLink) return;
+            const url = linkUrl.value.trim();
+            if (!url) {
+                activeLink.removeAttribute('href');
+                showToast('Link removed');
+                return;
+            }
+            // Open external links in a new tab safely
+            if (/^https?:\/\//i.test(url)) {
+                activeLink.setAttribute('href', url);
+                activeLink.setAttribute('target', '_blank');
+                activeLink.setAttribute('rel', 'noopener noreferrer');
+            } else if (url.startsWith('#')) {
+                activeLink.setAttribute('href', url);
+                activeLink.removeAttribute('target');
+                activeLink.removeAttribute('rel');
+            } else {
+                // If missing protocol, assume https
+                activeLink.setAttribute('href', 'https://' + url);
+                activeLink.setAttribute('target', '_blank');
+                activeLink.setAttribute('rel', 'noopener noreferrer');
+            }
+            showToast('Link updated');
+        });
+
+        // Include link hrefs in save data
+        function serializeEdits() {
+            const data = {
+                text: [],
+                progress: [],
+                photo: '',
+                links: []
+            };
+            document.querySelectorAll(SELECTORS_TO_SAVE).forEach((el) => {
+                data.text.push({ path: getPath(el), html: el.innerHTML });
+            });
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const fill = bar.querySelector('.progress-fill');
+                if (fill) data.progress.push({ path: getPath(fill), width: fill.style.width || fill.getAttribute('data-width') || '' });
+            });
+            const img = document.getElementById('profile-photo');
+            if (img && img.src && img.style.display !== 'none') data.photo = img.src;
+            document.querySelectorAll('a').forEach(a => {
+                data.links.push({ path: getPath(a), href: a.getAttribute('href') || '', target: a.getAttribute('target') || '', rel: a.getAttribute('rel') || '' });
+            });
+            return data;
+        }
+
+        function applyEdits(data) {
+            if (!data) return;
+            (data.text || []).forEach(item => {
+                const el = document.querySelector(item.path);
+                if (el) el.innerHTML = item.html;
+            });
+            (data.progress || []).forEach(item => {
+                const el = document.querySelector(item.path);
+                if (el) {
+                    el.style.width = item.width;
+                    el.setAttribute('data-width', item.width);
+                }
+            });
+            if (data.photo) {
+                const img = document.getElementById('profile-photo');
+                const initials = document.getElementById('profile-initials');
+                if (img) {
+                    img.src = data.photo;
+                    img.style.display = 'block';
+                }
+                if (initials) initials.style.display = 'none';
+            }
+            (data.links || []).forEach(item => {
+                const a = document.querySelector(item.path);
+                if (a) {
+                    if (item.href) a.setAttribute('href', item.href); else a.removeAttribute('href');
+                    if (item.target) a.setAttribute('target', item.target); else a.removeAttribute('target');
+                    if (item.rel) a.setAttribute('rel', item.rel); else a.removeAttribute('rel');
+                }
+            });
+        }
+
+        // Toast helper
+        function showToast(msg) {
+            const t = document.createElement('div');
+            t.textContent = msg;
+            t.className = 'fixed bottom-6 right-6 bg-black/80 text-white px-4 py-2 rounded-lg border border-cyan-400/30 shadow';
+            t.style.zIndex = 1003;
+            document.body.appendChild(t);
+            setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .4s'; }, 1600);
+            setTimeout(() => t.remove(), 2100);
+        }
+
+        // Photo upload functionality
+        const profileImage = document.getElementById('profile-image');
+        const photoInput = document.getElementById('photo-input');
+        const profilePhoto = document.getElementById('profile-photo');
+        const profileInitials = document.getElementById('profile-initials');
+        const uploadOverlay = document.getElementById('photo-upload-overlay');
+
+        profileImage.addEventListener('click', () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profilePhoto.src = e.target.result;
+                    profilePhoto.style.display = 'block';
+                    profileInitials.style.display = 'none';
+                    uploadOverlay.innerHTML = `
+                        <i class="fas fa-camera text-2xl mb-2"></i>
+                        <p class="text-sm">Change photo</p>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileClose = document.getElementById('mobile-close');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate progress bars
+                    if (entry.target.querySelector('.progress-fill')) {
+                        const progressBars = entry.target.querySelectorAll('.progress-fill');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Typing animation (now editable)
+        const typingText = document.querySelector('.typing-text');
+        let texts = ['MSc Economics Student', 'Data Analyst', 'Economic Researcher', 'Future Policy Expert'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingActive = true;
+
+        // Stop typing animation when editing
+        typingText.addEventListener('focus', () => {
+            typingActive = false;
+            typingText.style.borderRight = 'none';
+            typingText.style.animation = 'none';
+        });
+
+        // Resume typing animation when done editing
+        typingText.addEventListener('blur', () => {
+            const newText = typingText.textContent.trim();
+            if (newText) {
+                texts = [newText]; // Use the edited text
+                textIndex = 0;
+                charIndex = newText.length;
+                isDeleting = false;
+                typingActive = true;
+                typingText.style.borderRight = '2px solid #64ffda';
+                typingText.style.animation = 'blink 1s infinite';
+                setTimeout(() => typeWriter(), 2000);
+            }
+        });
+
+        function typeWriter() {
+            if (!typingActive) return;
+            
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Start typing animation
+        setTimeout(typeWriter, 1000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9822228ad150ff72',t:'MTc1ODM3OTgyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
