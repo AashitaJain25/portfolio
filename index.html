@@ -8,352 +8,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .navbar.scrolled {
-            background: rgba(10, 10, 10, 0.98);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            position: relative;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-        }
-        
-        /* Animated Background Particles */
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #64ffda;
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.6;
-        }
-        
+        body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(10,10,10,0.95); z-index: 1000; }
+        .hero { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); }
+        .particles { position: absolute; width: 100%; height: 100%; pointer-events:none; }
+        .particle { position: absolute; width: 2px; height: 2px; background: #64ffda; border-radius: 50%; animation: float 6s ease-in-out infinite; opacity: 0.6; }
         .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
         .particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
         .particle:nth-child(3) { top: 80%; left: 40%; animation-delay: 4s; }
         .particle:nth-child(4) { top: 40%; left: 60%; animation-delay: 1s; }
         .particle:nth-child(5) { top: 70%; left: 20%; animation-delay: 3s; }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
-            50% { transform: translateY(-20px) scale(1.1); opacity: 1; }
-        }
-        
-        /* Profile Image */
-        .profile-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-        }
-        
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #64ffda, #4fc3f7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            font-weight: bold;
-            color: #0a0a0a;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .profile-image::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #64ffda, #4fc3f7, #64ffda);
-            border-radius: 50%;
-            z-index: -1;
-            animation: rotate 3s linear infinite;
-        }
-        
-        .photo-upload-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-            color: white;
-        }
-        
-        .profile-image:hover .photo-upload-overlay {
-            opacity: 1;
-        }
-        
-        .profile-image {
-            cursor: pointer;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Typing Animation */
-        .typing-text {
-            border-right: 2px solid #64ffda;
-            animation: typing 4s steps(30) infinite, blink 1s infinite;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        
-        @keyframes typing {
-            0%, 50% { width: 0; }
-            100% { width: 100%; }
-        }
-        
-        @keyframes blink {
-            0%, 50% { border-color: #64ffda; }
-            51%, 100% { border-color: transparent; }
-        }
-        
-        /* Sections */
-        .section {
-            padding: 100px 0;
-            position: relative;
-        }
-        
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #64ffda, #4fc3f7);
-            border-radius: 2px;
-        }
-        
-        /* Cards */
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .card:hover::before {
-            left: 100%;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(100, 255, 218, 0.3);
-            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
-        }
-        
-        /* Skills */
-        .skill-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-item:hover {
-            background: rgba(100, 255, 218, 0.1);
-            border-color: rgba(100, 255, 218, 0.3);
-            transform: translateY(-5px);
-        }
-        
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #64ffda;
-        }
-        
-        /* Progress Bars */
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #64ffda, #4fc3f7);
-            border-radius: 3px;
-            transition: width 2s ease;
-        }
-        
-        /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, #64ffda, #4fc3f7);
-            color: #0a0a0a;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
-        }
-        
-        .btn-outline {
-            border: 2px solid #64ffda;
-            color: #64ffda;
-            padding: 10px 28px;
-            border-radius: 25px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-        
-        .btn-outline:hover {
-            background: #64ffda;
-            color: #0a0a0a;
-            transform: translateY(-2px);
-        }
-        
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .mobile-menu.active {
-            display: flex;
-        }
-        
-        /* Responsive */
+        @keyframes float { 0%,100%{transform:translateY(0px) scale(1);opacity:0.6;} 50%{transform:translateY(-20px) scale(1.1);opacity:1;} }
+        .profile-container { position: relative; width: 300px; height: 300px; margin: 0 auto; }
+        .profile-image { width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, #64ffda, #4fc3f7); overflow: hidden; }
+        .typing-text { border-right: 2px solid #64ffda; white-space: nowrap; overflow: hidden; }
+        .section { padding: 100px 0; }
+        .section-title { font-size: 3rem; font-weight: 700; text-align: center; margin-bottom: 3rem; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg, #64ffda, #4fc3f7); border-radius: 2px; }
+        .card { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 2rem; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-10px); border-color: rgba(100,255,218,0.3); box-shadow: 0 20px 40px rgba(100,255,218,0.1);}
+        .skill-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; }
+        .skill-item:hover { background: rgba(100,255,218,0.1); border-color: rgba(100,255,218,0.3); transform: translateY(-5px);}
+        .skill-icon { font-size: 2.5rem; margin-bottom: 1rem; color: #64ffda;}
+        .progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: .5rem; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg,#64ffda,#4fc3f7); border-radius: 3px; transition: width 2s ease; }
+        .btn-primary { background: linear-gradient(135deg,#64ffda,#4fc3f7); color: #0a0a0a; padding: 12px 30px; border-radius: 25px; font-weight: 600; text-decoration: none; display:inline-block; border:none; cursor:pointer; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(100,255,218,0.3);}
+        .btn-outline { border: 2px solid #64ffda; color: #64ffda; padding: 10px 28px; border-radius: 25px; font-weight: 600; background: transparent; display:inline-block; }
+        .btn-outline:hover { background: #64ffda; color: #0a0a0a; transform: translateY(-2px);}
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all .6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0);}
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(10,10,10,0.98); z-index: 999; flex-direction: column; justify-content: center; align-items: center;}
+        .mobile-menu.active { display: flex;}
         @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .profile-container {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .hero {
-                text-align: center;
-                padding: 0 1rem;
-            }
+            .section-title { font-size: 2rem;}
+            .profile-container { width: 250px; height: 250px;}
+            .hero { text-align: center; padding: 0 1rem;}
         }
     </style>
 </head>
@@ -394,7 +84,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero relative">
         <div class="particles">
             <div class="particle"></div>
             <div class="particle"></div>
@@ -402,8 +92,7 @@
             <div class="particle"></div>
             <div class="particle"></div>
         </div>
-        
-        <div class="container mx-auto px-6 relative z-10">
+        <div class="container mx-auto px-6 relative z-10 w-full">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="fade-in">
                     <p class="text-cyan-400 text-lg mb-4">Hello, I'm</p>
@@ -411,7 +100,7 @@
                         Aashita <span class="text-cyan-400">Jain</span>
                     </h1>
                     <div class="text-2xl lg:text-3xl mb-6 h-12">
-                        <span class="typing-text">Economist | Data Analyst</span>
+                        <span class="typing-text" id="typing"></span>
                     </div>
                     <p class="text-gray-300 text-lg mb-8 leading-relaxed max-w-lg">
                         Passionate about transforming complex economic data into actionable insights. 
@@ -420,7 +109,7 @@
                     <div class="flex flex-wrap gap-4">
                         <a href="#projects" class="btn-primary">View My Work</a>
                         <a href="#contact" class="btn-outline">Get In Touch</a>
-                        <a href="https://drive.google.com/file/d/1RKtv1KLdgWoLS3KLTQYlUCDNonAxl4C3/view" class="btn-outline" id="download-cv" download target="_blank" rel="noopener noreferrer">Download CV <i class="fas fa-download ml-2"></i></a>
+                        <a href="https://drive.google.com/file/d/1RKtv1KLdgWoLS3KLTQYlUCDNonAxl4C3/view" class="btn-outline" id="download-cv" target="_blank" rel="noopener noreferrer">Download CV</a>
                     </div>
                     <div class="flex space-x-6 mt-8">
                         <a href="https://www.linkedin.com/in/aashita-jain-8aa2321b6/" class="text-2xl text-gray-400 hover:text-cyan-400 transition" target="_blank" rel="noopener noreferrer">
@@ -434,16 +123,10 @@
                         </a>
                     </div>
                 </div>
-                
                 <div class="flex justify-center fade-in">
                     <div class="profile-container">
                         <div class="profile-image" id="profile-image">
-                            <img id="profile-photo" 
-                                 src="images/webpic.jpg" 
-                                 alt="Profile Photo" 
-                                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">
-                            
-                            <!-- Hide initials since photo is shown -->
+                            <img id="profile-photo" src="images/webpic.jpg" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">
                             <span id="profile-initials" style="display: none;">AJ</span>
                         </div>
                     </div>
@@ -460,54 +143,41 @@
                 <div class="fade-in">
                     <h3 class="text-2xl font-semibold mb-6 text-cyan-400">Get to know me!</h3>
                     <p class="text-gray-300 mb-6 leading-relaxed">
-                        I'm an aspiring economist equipped with data analytical skills with a passion for applying quantitative methods to solve real-world economic challenges. My academic journey has equipped me with strong analytical skills and a deep understanding of economic theory.
+                        I'm an aspiring economist equipped with data analytical skills with a passion for applying quantitative methods to solve real-world economic challenges. My academic journey has been focused on building strong foundations in economic theory, statistics, and programming.
                     </p>
                     <p class="text-gray-300 mb-6 leading-relaxed">
-                        Through coursework and independent research, I've developed expertise in econometric analysis, statistical modeling, and data visualization. I'm particularly interested in behavioral economics, development policy, and the intersection of technology and economic research.
+                        Through coursework and independent research, I've developed expertise in econometric analysis, statistical modeling, and data visualization. I'm particularly interested in behavioral economics and policy evaluation.
                     </p>
                     <p class="text-gray-300 mb-8 leading-relaxed">
                         I'm actively seeking opportunities in economic research, policy analysis, or financial consulting where I can apply my analytical skills and contribute to meaningful economic insights.
                     </p>
                     <a href="#contact" class="btn-primary">Contact Me</a>
                 </div>
-                
                 <div class="fade-in">
                     <h3 class="text-2xl font-semibold mb-6 text-cyan-400">My Skills</h3>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-python"></i>
-                            </div>
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
                             <h4 class="font-semibold">Python</h4>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
+                            <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
                             <h4 class="font-semibold">RStudio & PowerBI</h4>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
                             <h4 class="font-semibold">Machine Learning</h4>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-table"></i>
-                            </div>
+                            <div class="skill-icon"><i class="fas fa-table"></i></div>
                             <h4 class="font-semibold">Excel & SQL</h4>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
+                            <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
                             <h4 class="font-semibold">Econometrics</h4>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
+                            <div class="skill-icon"><i class="fas fa-brain"></i></div>
                             <h4 class="font-semibold">Big Data</h4>
                         </div>
                     </div>
@@ -520,204 +190,36 @@
     <section id="education" class="section bg-gray-900">
         <div class="container mx-auto px-6">
             <h2 class="section-title fade-in">Education & Experience</h2>
-            
-            <!-- Timeline Container -->
-            <div class="relative max-w-4xl mx-auto hidden md:block">
-                <!-- Timeline Line -->
-                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-cyan-400 to-blue-500 h-full"></div>
-                
-                <!-- Timeline Items -->
-                <div class="space-y-12">
-                    <!-- MSc Economics -->
-                    <div class="relative flex items-center fade-in">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="card">
-                                <div class="flex items-center justify-end mb-4">
-                                    <span class="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4">Current</span>
-                                    <div class="text-cyan-400 text-2xl">
-                                        <i class="fas fa-graduation-cap"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-2xl font-bold text-cyan-400 mb-2">MSc Economics</h3>
-                                <p class="text-xl text-white mb-2">Symbiosis School of Economics, Pune</p>
-                                <p class="text-gray-400 mb-4">2024 - 2026</p>
-                                <p class="text-gray-300 mb-4">Specialization: Data Analytics</p>
-                                <div class="bg-cyan-400/10 p-4 rounded-lg border border-cyan-400/20">
-                                    <p class="text-cyan-400 font-semibold">Current GPA: 8.24/10.0</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Timeline Dot -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-cyan-400 rounded-full border-4 border-gray-900 z-10"></div>
-                        <div class="w-1/2 pl-8"></div>
-                    </div>
-
-                    <!-- Research Internship -->
-                    <div class="relative flex items-center fade-in">
-                        <div class="w-1/2 pr-8"></div>
-                        <!-- Timeline Dot -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-400 rounded-full border-4 border-gray-900 z-10"></div>
-                        <div class="w-1/2 pl-8">
-                            <div class="card">
-                                <div class="flex items-center mb-4">
-                                    <div class="text-blue-400 text-2xl mr-4">
-                                        <i class="fas fa-briefcase"></i>
-                                    </div>
-                                    <span class="bg-blue-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Internship</span>
-                                </div>
-                                <h3 class="text-2xl font-bold text-blue-400 mb-2">Research Intern</h3>
-                                <p class="text-xl text-white mb-2">EnProSys InfoTech</p>
-                                <p class="text-gray-400 mb-4">Summer 2025</p>
-                                <p class="text-gray-300 mb-4">Built dynamic dashboards in Power BI to visualize multi-year data across segments. Identified sales trends and seasonal components to give Insights and policy suggestions that improved report clarity for managers.</p>
-                                <div class="bg-blue-400/10 p-4 rounded-lg border border-blue-400/20">
-                                    <p class="text-blue-400 font-semibold">PowerBI, SQL, Python</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- BSc Economics -->
-                    <div class="relative flex items-center fade-in">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="card">
-                                <div class="flex items-center justify-end mb-4">
-                                    <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4">Internship</span>
-                                    <div class="text-green-400 text-2xl">
-                                        <i class="fas fa-graduation-cap"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-2xl font-bold text-green-400 mb-2">Wealth Management Intern</h3>
-                                <p class="text-xl text-white mb-2">Arihant Capital Pvt. Ltd.</p>
-                                <p class="text-gray-400 mb-4">Summer 2022</p>
-                                <p class="text-gray-300 mb-4">Worked on several projects of various departments like research, analytic, wealth, equity and marketing. Analyzed the company’s financial reports and in-depth study of client data for marketing and strategic purposes.</p>
-                                <div class="bg-green-400/10 p-4 rounded-lg border border-green-400/20">
-                                    <p class="text-green-400 font-semibold">Advance Excel, Quantitative Analysis, Portfolio management</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Timeline Dot -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-400 rounded-full border-4 border-gray-900 z-10"></div>
-                        <div class="w-1/2 pl-8"></div>
-                    </div>
-
-                    <!-- Banking Internship -->
-                    <div class="relative flex items-center fade-in">
-                        <div class="w-1/2 pr-8"></div>
-                        <!-- Timeline Dot -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-purple-400 rounded-full border-4 border-gray-900 z-10"></div>
-                        <div class="w-1/2 pl-8">
-                            <div class="card">
-                                <div class="flex items-center mb-4">
-                                    <div class="text-purple-400 text-2xl mr-4">
-                                        <i class="fas fa-chart-line"></i>
-                                    </div>
-                                    <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold">Completed</span>
-                                </div>
-                                <h3 class="text-2xl font-bold text-purple-400 mb-2">B.Sc Economics</h3>
-                                <p class="text-xl text-white mb-2">NMIMS, Navi Mumbai</p>
-                                <p class="text-gray-400 mb-4">2020 - 2023</p>
-                                <p class="text-gray-300 mb-4"></p>
-                                <div class="bg-purple-400/10 p-4 rounded-lg border border-purple-400/20">
-                                    <p class="text-purple-400 font-semibold">CGPA : 2.95/4.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Part-time Role -->
-                    <div class="relative flex items-center fade-in">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="card">
-                                <div class="flex items-center justify-end mb-4">
-                                    <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold mr-4"></span>
-                                    <div class="text-yellow-400 text-2xl">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-2xl font-bold text-yellow-400 mb-2">High School</h3>
-                                <p class="text-xl text-white mb-2">Choithram School, Indore</p>
-                                <p class="text-gray-400 mb-4">2020</p>
-                                <p class="text-gray-300 mb-4">Commerce with Mathematics</p>
-                                <div class="bg-yellow-400/10 p-4 rounded-lg border border-yellow-400/20">
-                                    <p class="text-yellow-400 font-semibold">Final grade: 85%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Timeline Dot -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-yellow-400 rounded-full border-4 border-gray-900 z-10"></div>
-                        <div class="w-1/2 pl-8"></div>
-                    </div>
+            <div class="space-y-8">
+                <div class="card fade-in">
+                    <h3 class="text-xl font-bold text-cyan-400 mb-2">MSc Economics</h3>
+                    <p class="text-white mb-1">Symbiosis School of Economics, Pune</p>
+                    <p class="text-gray-400 text-sm mb-3">2024 - 2026</p>
+                    <p class="text-gray-300 text-sm mb-3">Specialization: Data Analytics | Current GPA: 8.24/10.0</p>
                 </div>
-            </div>
-
-            <!-- Mobile Timeline (Responsive) -->
-            <div class="block md:hidden">
-                <div class="relative">
-                    <!-- Mobile Timeline Line -->
-                    <div class="absolute left-8 top-0 w-1 bg-gradient-to-b from-cyan-400 to-yellow-400 h-full"></div>
-                    
-                    <div class="space-y-8">
-                        <!-- Mobile Timeline Items -->
-                        <div class="relative pl-16 fade-in">
-                            <div class="absolute left-6 w-6 h-6 bg-cyan-400 rounded-full border-4 border-gray-900"></div>
-                            <div class="card">
-                                <span class="bg-cyan-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Current</span>
-                                <h3 class="text-xl font-bold text-cyan-400 mb-2">MSc Economics</h3>
-                                <p class="text-white mb-1">Symbiosis School of Economics, Pune</p>
-                                <p class="text-gray-400 text-sm mb-3">2024 - 2026</p>
-                                <p class="text-gray-300 text-sm mb-3">Specialization: Data Analytics</p>
-                                <div class="bg-cyan-400/10 p-3 rounded-lg border border-cyan-400/20">
-                                    <p class="text-cyan-400 font-semibold text-sm">Current GPA: 8.24/10.0</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-16 fade-in">
-                            <div class="absolute left-6 w-6 h-6 bg-blue-400 rounded-full border-4 border-gray-900"></div>
-                            <div class="card">
-                                <span class="bg-blue-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Internship</span>
-                                <h3 class="text-xl font-bold text-blue-400 mb-2">Data Analytics Intern</h3>
-                                <p class="text-white mb-1">EnProSys InfoTech</p>
-                                <p class="text-gray-400 text-sm mb-3">Summer 2025</p>
-                                <p class="text-gray-300 text-sm">Built dynamic dashboards in Power BI to visualize multi-year data across segments. Identified sales trends and seasonal components to give Insights and policy suggestions that improved report clarity for managers.</p>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-16 fade-in">
-                            <div class="absolute left-6 w-6 h-6 bg-green-400 rounded-full border-4 border-gray-900"></div>
-                            <div class="card">
-                                <span class="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Internship</span>
-                                <h3 class="text-xl font-bold text-green-400 mb-2">Wealth Management Intern</h3>
-                                <p class="text-white mb-1">Arihant Capital Pvt. Ltd.</p>
-                                <p class="text-gray-400 text-sm mb-3">Summer 2022</p>
-                                <div class="bg-green-400/10 p-3 rounded-lg border border-green-400/20">
-                                    <p class="text-green-400 font-semibold text-sm">Advance Excel, Quantitative Analysis, Portfolio management</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-16 fade-in">
-                            <div class="absolute left-6 w-6 h-6 bg-purple-400 rounded-full border-4 border-gray-900"></div>
-                            <div class="card">
-                                <span class="bg-purple-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">Completed</span>
-                                <h3 class="text-xl font-bold text-purple-400 mb-2">B.Sc Economics</h3>
-                                <p class="text-white mb-1">NMIMS, Navi Mumbai</p>
-                                <p class="text-gray-400 text-sm mb-3">2020 - 2023</p>
-                                <p class="text-gray-300 text-sm">CGPA : 2.95/4.00</p>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-16 fade-in">
-                            <div class="absolute left-6 w-6 h-6 bg-yellow-400 rounded-full border-4 border-gray-900"></div>
-                            <div class="card">
-                                <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block"></span>
-                                <h3 class="text-xl font-bold text-yellow-400 mb-2">High School</h3>
-                                <p class="text-white mb-1">Choithram School, Indore</p>
-                                <p class="text-gray-400 text-sm mb-3">2020</p>
-                                <p class="text-gray-300 text-sm">Commerce with Mathematics</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card fade-in">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">Research Intern</h3>
+                    <p class="text-white mb-1">EnProSys InfoTech</p>
+                    <p class="text-gray-400 text-sm mb-3">Summer 2025</p>
+                    <p class="text-gray-300 text-sm mb-3">Built dynamic dashboards in Power BI to visualize multi-year data across segments. Identified sales trends and seasonal components to give actionable insights.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3 class="text-xl font-bold text-green-400 mb-2">Wealth Management Intern</h3>
+                    <p class="text-white mb-1">Arihant Capital Pvt. Ltd.</p>
+                    <p class="text-gray-400 text-sm mb-3">Summer 2022</p>
+                    <p class="text-gray-300 text-sm mb-3">Analyzed financials, created reports, and worked on quantitative analysis and portfolio management.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3 class="text-xl font-bold text-purple-400 mb-2">B.Sc Economics</h3>
+                    <p class="text-white mb-1">NMIMS, Navi Mumbai</p>
+                    <p class="text-gray-400 text-sm mb-3">2020 - 2023</p>
+                    <p class="text-gray-300 text-sm mb-3">CGPA : 2.95/4.00</p>
+                </div>
+                <div class="card fade-in">
+                    <h3 class="text-xl font-bold text-yellow-400 mb-2">High School</h3>
+                    <p class="text-white mb-1">Choithram School, Indore</p>
+                    <p class="text-gray-400 text-sm mb-3">2020</p>
+                    <p class="text-gray-300 text-sm mb-3">Commerce with Mathematics | Final grade: 85%</p>
                 </div>
             </div>
         </div>
@@ -769,7 +271,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="fade-in">
                     <h3 class="text-2xl font-semibold mb-6 text-cyan-400">CERTIFICATIONS</h3>
                     <div class="space-y-6">
@@ -827,31 +328,30 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold">Predicting India's GDP using machine learning methods</h3>
-                            <p class="text-sm text-gray-400">Econometrics • Python • Bid Data</p>
+                            <p class="text-sm text-gray-400">Econometrics • Python • Big Data</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 mb-4">This project applies machine learning techniques to forecast India’s GDP by analyzing historical economic data and key indicators. It aims to provide accurate predictions to support better policy planning and economic decision-making.</p>
+                    <p class="text-gray-300 mb-4">Applied machine learning techniques to forecast India’s GDP by analyzing historical economic data and key indicators. Provided actionable insights for policymakers.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Apache spark</span>
+                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Apache Spark</span>
                         <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">Regression</span>
                     </div>
                     <a href="#" class="text-cyan-400 font-semibold hover:text-cyan-300 transition">
                         View Project <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
-
                 <div class="card fade-in">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
                             <i class="fas fa-virus text-cyan-400 text-xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold">Bilateral trade between India and China pre and post COVID.</h3>
+                            <h3 class="text-xl font-bold">Bilateral trade between India and China pre and post COVID</h3>
                             <p class="text-sm text-gray-400">Time Series • R • Policy Analysis</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 mb-4">This project examines the changes in bilateral trade between India and China, comparing trends before and after the COVID-19 pandemic to understand its impact on key sectors and trade dynamics.</p>
+                    <p class="text-gray-300 mb-4">Examined changes in bilateral trade between India and China, comparing trends before and after the COVID-19 pandemic.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">R</span>
                         <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm">Time Series</span>
@@ -861,18 +361,17 @@
                         View Project <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
-
                 <div class="card fade-in">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
                             <i class="fas fa-graduation-cap text-cyan-400 text-xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold">Assessing the impact of trade among BRICS Nations- Emerging players in global economy.</h3>
+                            <h3 class="text-xl font-bold">Assessing the impact of trade among BRICS Nations</h3>
                             <p class="text-sm text-gray-400">Survey Research • Excel • Statistics</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 mb-4">This study explores the role of trade among BRICS nations in shaping the global economy. It assesses trade flows, economic cooperation, and sectoral performance to understand how these emerging economies are influencing global trade dynamics and strengthening their collective economic position.</p>
+                    <p class="text-gray-300 mb-4">Explored the role of trade among BRICS nations in shaping the global economy. Assessed trade flows, cooperation, and sectoral performance.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Excel</span>
                         <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm">Qualitative Research</span>
@@ -882,18 +381,17 @@
                         View Project <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
-
                 <div class="card fade-in">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4">
                             <i class="fas fa-globe text-cyan-400 text-xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold">A Comparative Analysis: Performance of Key Sectors in India-China Trade Pre and Post Covid-19.</h3>
+                            <h3 class="text-xl font-bold">Comparative Analysis: India-China Trade Sectors Pre/Post Covid-19</h3>
                             <p class="text-sm text-gray-400">Panel Data • Stata • Development Economics</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 mb-4">This study examines the performance of key sectors in India-China trade, comparing trends before and after the COVID-19 pandemic. It analyzes shifts in trade patterns, sectoral growth, and policy impacts to understand how the pandemic reshaped bilateral economic dynamics.</p>
+                    <p class="text-gray-300 mb-4">Examined the performance of key sectors in India-China trade before and after the COVID-19 pandemic; analysis of shifts and development theories.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">Stata</span>
                         <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Panel Data</span>
@@ -954,23 +452,6 @@
         </div>
     </section>
 
-    <!-- Link Editor Modal -->
-    <div id="link-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-[1003]">
-        <div class="bg-gray-900 border border-cyan-400/30 rounded-2xl w-[92%] max-w-xl p-6 shadow-2xl">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xl font-semibold text-cyan-300">Edit Links</h3>
-                <button id="close-link-modal" class="text-gray-300 hover:text-white"><i class="fas fa-times"></i></button>
-            </div>
-            <p class="text-gray-400 text-sm mb-4">Select a link on the page or pick one below to edit its URL. External links will open in a new tab safely.</p>
-            <div id="link-list" class="space-y-3 max-h-64 overflow-auto pr-2"></div>
-            <div class="mt-5 flex items-center gap-2">
-                <input id="link-url" type="text" placeholder="https://your-link.com" class="flex-1 bg-black/40 border border-gray-700 rounded-lg px-3 py-2 text-white outline-none focus:border-cyan-400" />
-                <button id="apply-link" class="bg-cyan-400 text-black font-semibold px-4 py-2 rounded-lg hover:bg-cyan-300">Apply</button>
-            </div>
-            <p id="link-hint" class="text-xs text-gray-500 mt-2">Tip: Include https:// at the start for external sites.</p>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="bg-black py-8">
         <div class="container mx-auto px-6 text-center">
@@ -979,8 +460,46 @@
     </footer>
 
     <script>
+        // Typing animation
+        const roles = ["Economist | Data Analyst", "Quantitative Researcher", "Policy Enthusiast"];
+        let typingIndex = 0, charIndex = 0, currentRole = "";
+        function typeWriter() {
+            if (charIndex < roles[typingIndex].length) {
+                currentRole += roles[typingIndex][charIndex++];
+                document.getElementById("typing").textContent = currentRole + "|";
+                setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(() => {
+                    currentRole = ""; charIndex = 0; typingIndex = (typingIndex + 1) % roles.length;
+                    typeWriter();
+                }, 1200);
+            }
+        }
+        typeWriter();
 
-        setTimeout(typeWriter, 1000);
+        // Mobile menu toggle
+        document.getElementById("mobile-toggle").onclick = function() {
+            document.getElementById("mobile-menu").classList.add("active");
+        };
+        document.getElementById("mobile-close").onclick = function() {
+            document.getElementById("mobile-menu").classList.remove("active");
+        };
+
+        // Progress bar fill
+        document.querySelectorAll('.progress-fill').forEach(function(el){
+            el.style.width = el.getAttribute('data-width');
+        });
+
+        // Fade-in animation on scroll
+        function reveal() {
+            document.querySelectorAll('.fade-in').forEach(function(el){
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9822228ad150ff72',t:'MTc1ODM3OTgyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
